@@ -443,8 +443,22 @@ function typeWriter(element, text, speed = 100) {
     
     function type() {
         if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
+            // Check if we're at an HTML tag
+            if (text.charAt(i) === '<') {
+                // Find the end of the tag
+                let tagEnd = text.indexOf('>', i);
+                if (tagEnd !== -1) {
+                    // Add the entire tag at once
+                    element.innerHTML += text.substring(i, tagEnd + 1);
+                    i = tagEnd + 1;
+                } else {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                }
+            } else {
+                element.innerHTML += text.charAt(i);
+                i++;
+            }
             setTimeout(type, speed);
         }
     }
