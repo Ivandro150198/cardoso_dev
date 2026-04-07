@@ -59,7 +59,7 @@ body {
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ba3 100%);
     color: white;
     position: relative;
     overflow: hidden;
@@ -82,7 +82,8 @@ body {
 }
 
 .hero-content .text-primary {
-    color: #ffd700 !important;
+    color: #4fc3f7 !important;
+    font-weight: 700;
 }
 
 .hero-buttons .btn {
@@ -90,11 +91,36 @@ body {
     padding: 0.75rem 2rem;
     border-radius: 50px;
     transition: var(--transition);
+    border: 2px solid transparent;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.hero-buttons .btn-primary {
+    background-color: #ffffff;
+    color: #1e3c72;
+    border-color: #ffffff;
+}
+
+.hero-buttons .btn-outline-primary {
+    background-color: transparent;
+    color: #ffffff;
+    border-color: #ffffff;
 }
 
 .hero-buttons .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-buttons .btn-primary:hover {
+    background-color: #f8f9fa;
+    color: #1e3c72;
+}
+
+.hero-buttons .btn-outline-primary:hover {
+    background-color: #ffffff;
+    color: #1e3c72;
 }
 
 .profile-img {
@@ -151,15 +177,25 @@ body {
 }
 
 .social-icon {
-    color: white;
-    margin: 0 0.5rem;
-    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0.75rem;
+    font-size: 1.75rem;
     transition: var(--transition);
+    background: rgba(255, 255, 255, 0.1);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
 }
 
 .social-icon:hover {
-    color: #ffd700;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.2);
     transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Projects Section */
