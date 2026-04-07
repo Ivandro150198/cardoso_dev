@@ -12,7 +12,7 @@ const portfolioData = {
             id: 1,
             title: "Gestão de Armazéns",
             description: "Sistema completo para gestão de armazéns com controle de estoque, movimentação de produtos e relatórios detalhados.",
-            image: "assets/images/projects/gestao-armazens.jpg",
+            image: "https://via.placeholder.com/400x250/1e3c72/ffffff?text=Gestão+de+Armazéns",
             technologies: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
             github: "https://github.com/Ivandro150198/Gestao-de-Armazens",
             demo: "#",
@@ -26,7 +26,7 @@ const portfolioData = {
             id: 2,
             title: "Ticket - Venda de Bilhetes Online",
             description: "Plataforma de e-commerce para venda de bilhetes online para eventos, shows e espetáculos com integração de pagamento.",
-            image: "assets/images/projects/ticket.jpg",
+            image: "https://via.placeholder.com/400x250/0f3460/ffffff?text=Ticket+Bilhetes+Online",
             technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
             github: "https://github.com/Ivandro150198/Ticket",
             demo: "#",
@@ -110,7 +110,7 @@ const portfolioData = {
             title: "Otimizando Performance em Aplicações PHP",
             excerpt: "Descubra técnicas avançadas para melhorar o desempenho das suas aplicações PHP usando cache, otimização de queries e padrões de projeto.",
             date: "15 de Março, 2024",
-            image: "assets/images/blog/post1.jpg",
+            image: "https://via.placeholder.com/400x250/00d4ff/ffffff?text=PHP+Performance",
             readTime: "8 min"
         },
         {
@@ -118,7 +118,7 @@ const portfolioData = {
             title: "Arquitetura de Microserviços: Guia Prático",
             excerpt: "Aprenda como projetar e implementar uma arquitetura de microserviços escalável usando Docker e Kubernetes.",
             date: "10 de Março, 2024",
-            image: "assets/images/blog/post2.jpg",
+            image: "https://via.placeholder.com/400x250/00ff88/ffffff?text=Microserviços",
             readTime: "12 min"
         },
         {
@@ -126,7 +126,7 @@ const portfolioData = {
             title: "Segurança em APIs REST: Melhores Práticas",
             excerpt: "Proteja suas APIs contra ataques comuns usando autenticação JWT, rate limiting e validação de dados.",
             date: "5 de Março, 2024",
-            image: "assets/images/blog/post3.jpg",
+            image: "https://via.placeholder.com/400x250/ff4757/ffffff?text=API+Security",
             readTime: "10 min"
         }
     ]
