@@ -11,30 +11,20 @@ const portfolioData = {
         {
             id: 1,
             title: "Gestão de Armazéns",
-            description: "Sistema completo para gestão de armazéns com controle de estoque, movimentação de produtos e relatórios detalhados.",
+            description: "Sistema web para controle de estoque e gestão de armazéns com dashboard em tempo real.",
             image: "https://via.placeholder.com/400x250/1e3c72/ffffff?text=Gestão+de+Armazéns",
             technologies: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
             github: "https://github.com/Ivandro150198/Gestao-de-Armazens",
-            demo: "#",
-            caseStudy: {
-                problem: "Empresas enfrentavam dificuldades em controlar múltiplos armazéns e sincronizar o estoque em tempo real.",
-                solution: "Desenvolvi um sistema web centralizado com dashboard em tempo real e alertas automáticos de estoque baixo.",
-                result: "Redução de 70% em perdas de estoque e otimização de 40% no tempo de gestão."
-            }
+            demo: "#"
         },
         {
             id: 2,
-            title: "Ticket - Venda de Bilhetes Online",
-            description: "Plataforma de e-commerce para venda de bilhetes online para eventos, shows e espetáculos com integração de pagamento.",
-            image: "https://via.placeholder.com/400x250/0f3460/ffffff?text=Ticket+Bilhetes+Online",
+            title: "Ticket - Venda de Bilhetes",
+            description: "Plataforma online para venda de bilhetes de eventos com sistema de pagamento integrado.",
+            image: "https://via.placeholder.com/400x250/0f3460/ffffff?text=Ticket+Bilhetes",
             technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
             github: "https://github.com/Ivandro150198/Ticket",
-            demo: "#",
-            caseStudy: {
-                problem: "Produtores de eventos precisavam de uma solução digital para vender bilhetes e gerenciar participantes.",
-                solution: "Criei uma plataforma completa com carrinho de compras, gateway de pagamento e emissão de bilhetes digitais.",
-                result: "Mais de 10.000 bilhetes vendidos e redução de 80% no trabalho manual de gestão."
-            }
+            demo: "#"
         }
     ],
     
@@ -69,68 +59,35 @@ const portfolioData = {
     experience: [
         {
             date: "03/2025 - Atual",
-            title: "Técnico de Informática / Técnica de Informática",
+            title: "Técnico de Informática",
             company: "Médicos do Mundo",
-            location: "Bissau, Guiné-Bissau",
-            description: "Suporte técnico especializado em infraestrutura de TI e sistemas médicos. Manutenção de computadores, configuração de redes e suporte a usuários em ambiente hospitalar."
+            location: "Bissau",
+            description: "Suporte técnico em infraestrutura de TI e sistemas médicos."
         },
         {
             date: "2023 - Atual",
             title: "Informático",
-            company: "Hospital do Mal de Hansen de Cumura",
-            location: "Cumura, Prábis, Guiné-Bissau",
-            description: "Administração de sistemas hospitalares, manutenção de infraestrutura de TI e suporte técnico. Responsável pela operacionalidade dos sistemas críticos do hospital."
+            company: "Hospital do Mal de Hansen",
+            location: "Cumura",
+            description: "Administração de sistemas hospitalares e manutenção de TI."
         },
         {
             date: "06/2022 - 10/2022",
             title: "Assistente Informático",
-            company: "Hospital do Mal de Hansen de Cumura",
-            location: "Bissau, Guiné-Bissau",
-            description: "Manutenção de computadores, monitoramento do sistema hospitalar e monitoramento da rede interna. Suporte técnico aos usuários e garantia da continuidade operacional."
+            company: "Hospital do Mal de Hansen",
+            location: "Bissau",
+            description: "Manutenção de computadores e monitoramento de sistemas."
         },
         {
             date: "11/2022",
-            title: "Técnico de Manutenção de Computadores",
+            title: "Técnico de Manutenção",
             company: "CEFAP",
-            location: "Bissau, Guiné-Bissau",
-            description: "Manutenção preventiva e corretiva de computadores e periféricos. Diagnóstico de problemas hardware e software, configuração de sistemas e otimização de performance."
-        },
-        {
-            date: "11/2022",
-            title: "Membro da Equipa dos Técnicos Informáticos",
-            company: "UCGB JR",
-            location: "Bissau, Guiné-Bissau",
-            description: "Participação ativa na equipe técnica, colaboração em projetos de infraestrutura e compartilhamento de conhecimentos técnicos com a equipe."
+            location: "Bissau",
+            description: "Manutenção preventiva e corretiva de computadores."
         }
     ],
     
-    blogPosts: [
-        {
-            id: 1,
-            title: "Otimizando Performance em Aplicações PHP",
-            excerpt: "Descubra técnicas avançadas para melhorar o desempenho das suas aplicações PHP usando cache, otimização de queries e padrões de projeto.",
-            date: "15 de Março, 2024",
-            image: "https://via.placeholder.com/400x250/00d4ff/ffffff?text=PHP+Performance",
-            readTime: "8 min"
-        },
-        {
-            id: 2,
-            title: "Arquitetura de Microserviços: Guia Prático",
-            excerpt: "Aprenda como projetar e implementar uma arquitetura de microserviços escalável usando Docker e Kubernetes.",
-            date: "10 de Março, 2024",
-            image: "https://via.placeholder.com/400x250/00ff88/ffffff?text=Microserviços",
-            readTime: "12 min"
-        },
-        {
-            id: 3,
-            title: "Segurança em APIs REST: Melhores Práticas",
-            excerpt: "Proteja suas APIs contra ataques comuns usando autenticação JWT, rate limiting e validação de dados.",
-            date: "5 de Março, 2024",
-            image: "https://via.placeholder.com/400x250/ff4757/ffffff?text=API+Security",
-            readTime: "10 min"
-        }
-    ]
-};
+    };
 
 // Load Projects
 function loadProjects() {
@@ -148,23 +105,16 @@ function loadProjects() {
                         <h3 class="project-title">${project.title}</h3>
                         <p class="project-description">${project.description}</p>
                         
-                        <div class="case-study mb-3">
-                            <h6>Estudo de Caso:</h6>
-                            <p><strong>Problema:</strong> ${project.caseStudy.problem}</p>
-                            <p><strong>Solução:</strong> ${project.caseStudy.solution}</p>
-                            <p><strong>Resultado:</strong> ${project.caseStudy.result}</p>
-                        </div>
-                        
                         <div class="project-tech">
                             ${project.technologies.map(tech => `<span class="tech-badge">${tech}</span>`).join('')}
                         </div>
                         
                         <div class="project-links">
                             <a href="${project.github}" target="_blank" class="github-link">
-                                <i class="fab fa-github me-1"></i> GitHub
+                                <i class="fab fa-github me-1"></i> Código
                             </a>
-                            <a href="${project.demo}" target="_blank" class="demo-link">
-                                <i class="fas fa-external-link-alt me-1"></i> Live Demo
+                            <a href="${project.github}" target="_blank" class="demo-link">
+                                <i class="fas fa-external-link-alt me-1"></i> Ver Projeto
                             </a>
                         </div>
                     </div>
@@ -235,35 +185,6 @@ function loadExperience() {
     });
 }
 
-// Load Blog Posts
-function loadBlogPosts() {
-    const container = document.getElementById('blog-container');
-    if (!container) return;
-    
-    container.innerHTML = '';
-    
-    portfolioData.blogPosts.forEach(post => {
-        const blogCard = `
-            <div class="col-lg-4 col-md-6" data-aos="fade-up">
-                <div class="blog-card">
-                    <img src="${post.image}" alt="${post.title}" class="blog-image">
-                    <div class="blog-content">
-                        <h3 class="blog-title">${post.title}</h3>
-                        <div class="blog-meta">
-                            <i class="far fa-calendar me-1"></i> ${post.date}
-                            <span class="ms-3"><i class="far fa-clock me-1"></i> ${post.readTime}</span>
-                        </div>
-                        <p class="blog-excerpt">${post.excerpt}</p>
-                        <a href="#" class="read-more" onclick="openBlogPost(${post.id}); return false;">
-                            Ler mais <i class="fas fa-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        `;
-        container.innerHTML += blogCard;
-    });
-}
 
 // Load GitHub Widget
 async function loadGitHubWidget() {
@@ -363,7 +284,6 @@ document.addEventListener('DOMContentLoaded', function() {
     loadProjects();
     loadSkills();
     loadExperience();
-    loadBlogPosts();
     loadGitHubWidget();
 });
 
