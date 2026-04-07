@@ -68,28 +68,39 @@ const portfolioData = {
     
     experience: [
         {
-            date: "2022 - Presente",
-            title: "Engenheiro de Software Sênior",
-            company: "Tech Solutions Ltda",
-            description: "Liderança técnica no desenvolvimento de sistemas críticos para clientes enterprise. Arquitetura de microserviços e otimização de performance."
+            date: "03/2025 - Atual",
+            title: "Técnico de Informática / Técnica de Informática",
+            company: "Médicos do Mundo",
+            location: "Bissau, Guiné-Bissau",
+            description: "Suporte técnico especializado em infraestrutura de TI e sistemas médicos. Manutenção de computadores, configuração de redes e suporte a usuários em ambiente hospitalar."
         },
         {
-            date: "2020 - 2022",
-            title: "Desenvolvedor Full-stack",
-            company: "Digital Innovation",
-            description: "Desenvolvimento de aplicações web modernas usando React e Node.js. Implementação de APIs RESTful e integração com serviços de terceiros."
+            date: "2023 - Atual",
+            title: "Informático",
+            company: "Hospital do Mal de Hansen de Cumura",
+            location: "Cumura, Prábis, Guiné-Bissau",
+            description: "Administração de sistemas hospitalares, manutenção de infraestrutura de TI e suporte técnico. Responsável pela operacionalidade dos sistemas críticos do hospital."
         },
         {
-            date: "2018 - 2020",
-            title: "Desenvolvedor PHP",
-            company: "Web Agency Pro",
-            description: "Criação de sites e sistemas personalizados para clientes diversos. Manutenção e evolução de aplicações legadas."
+            date: "06/2022 - 10/2022",
+            title: "Assistente Informático",
+            company: "Hospital do Mal de Hansen de Cumura",
+            location: "Bissau, Guiné-Bissau",
+            description: "Manutenção de computadores, monitoramento do sistema hospitalar e monitoramento da rede interna. Suporte técnico aos usuários e garantia da continuidade operacional."
         },
         {
-            date: "2017 - 2018",
-            title: "Estagiário de Desenvolvimento",
-            company: "StartUp Tech",
-            description: "Apoio no desenvolvimento de novas funcionalidades e correção de bugs. Aprendizado em metodologias ágeis e boas práticas."
+            date: "11/2022",
+            title: "Técnico de Manutenção de Computadores",
+            company: "CEFAP",
+            location: "Bissau, Guiné-Bissau",
+            description: "Manutenção preventiva e corretiva de computadores e periféricos. Diagnóstico de problemas hardware e software, configuração de sistemas e otimização de performance."
+        },
+        {
+            date: "11/2022",
+            title: "Membro da Equipa dos Técnicos Informáticos",
+            company: "UCGB JR",
+            location: "Bissau, Guiné-Bissau",
+            description: "Participação ativa na equipe técnica, colaboração em projetos de infraestrutura e compartilhamento de conhecimentos técnicos com a equipe."
         }
     ],
     
