@@ -40,32 +40,29 @@ const portfolioData = {
     
     skills: {
         "Backend": [
-            { name: "PHP", level: 90 },
-            { name: "Python", level: 85 },
-            { name: "Node.js", level: 80 },
-            { name: "Java", level: 75 },
-            { name: "C#", level: 70 }
+            { name: "PHP", level: 95 },
+            { name: "JavaScript", level: 90 },
+            { name: "MySQL", level: 85 },
+            { name: "HTML5", level: 95 },
+            { name: "CSS3", level: 90 }
         ],
         "Frontend": [
+            { name: "HTML5", level: 95 },
+            { name: "CSS3", level: 90 },
             { name: "JavaScript", level: 90 },
-            { name: "React", level: 85 },
-            { name: "Vue.js", level: 75 },
-            { name: "HTML/CSS", level: 95 },
-            { name: "TypeScript", level: 80 }
+            { name: "Bootstrap", level: 85 },
+            { name: "jQuery", level: 80 }
         ],
         "Banco de Dados": [
-            { name: "MySQL", level: 90 },
-            { name: "PostgreSQL", level: 85 },
-            { name: "MongoDB", level: 80 },
-            { name: "Redis", level: 75 },
-            { name: "SQLite", level: 85 }
+            { name: "MySQL", level: 85 },
+            { name: "SQL", level: 90 },
+            { name: "Database Design", level: 80 }
         ],
-        "DevOps": [
-            { name: "Docker", level: 80 },
-            { name: "Git", level: 90 },
+        "DevOps & Ferramentas": [
+            { name: "Git", level: 95 },
+            { name: "Jenkins", level: 75 },
             { name: "CI/CD", level: 75 },
-            { name: "AWS", level: 70 },
-            { name: "Linux", level: 85 }
+            { name: "Version Control", level: 90 }
         ]
     },
     
@@ -301,7 +298,7 @@ function getCategoryIcon(category) {
         "Backend": "server",
         "Frontend": "desktop",
         "Banco de Dados": "database",
-        "DevOps": "cogs"
+        "DevOps & Ferramentas": "cogs"
     };
     return icons[category] || "code";
 }
