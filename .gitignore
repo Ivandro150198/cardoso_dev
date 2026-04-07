@@ -101,8 +101,8 @@ junit.xml
 # Arquivos específicos do projeto
 assets/cv/curriculo.pdf
 assets/images/profile.jpg
-assets/images/projects/*
-assets/images/blog/*
+!assets/images/projects/*
+!assets/images/blog/*
 !assets/images/projects/.gitkeep
 !assets/images/blog/.gitkeep
 

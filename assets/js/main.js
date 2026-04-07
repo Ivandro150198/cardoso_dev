@@ -10,44 +10,30 @@ const portfolioData = {
     projects: [
         {
             id: 1,
-            title: "Sistema de Gestão Empresarial",
-            description: "Plataforma completa para gestão de pequenas e médias empresas com módulos de vendas, estoque e financeiro.",
-            image: "assets/images/projects/project1.jpg",
-            technologies: ["PHP", "MySQL", "Bootstrap", "JavaScript", "jQuery"],
-            github: "https://github.com/Ivandro150198/sistema-gestao",
-            demo: "https://demo.sistema.com",
+            title: "Gestão de Armazéns",
+            description: "Sistema completo para gestão de armazéns com controle de estoque, movimentação de produtos e relatórios detalhados.",
+            image: "assets/images/projects/gestao-armazens.jpg",
+            technologies: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+            github: "https://github.com/Ivandro150198/Gestao-de-Armazens",
+            demo: "#",
             caseStudy: {
-                problem: "Empresas pequenas enfrentavam dificuldades em gerenciar múltiplos processos de forma integrada.",
-                solution: "Desenvolvi um sistema modular que centraliza todas as operações empresariais em uma única plataforma.",
-                result: "Aumento de 40% na produtividade e redução de 60% em erros de processamento."
+                problem: "Empresas enfrentavam dificuldades em controlar múltiplos armazéns e sincronizar o estoque em tempo real.",
+                solution: "Desenvolvi um sistema web centralizado com dashboard em tempo real e alertas automáticos de estoque baixo.",
+                result: "Redução de 70% em perdas de estoque e otimização de 40% no tempo de gestão."
             }
         },
         {
             id: 2,
-            title: "E-commerce Moderno",
-            description: "Loja virtual com sistema de pagamento integrado, gestão de produtos e painel administrativo completo.",
-            image: "assets/images/projects/project2.jpg",
-            technologies: ["React", "Node.js", "MongoDB", "Stripe API", "Redux"],
-            github: "https://github.com/Ivandro150198/ecommerce-moderno",
-            demo: "https://loja-demo.com",
+            title: "Ticket - Venda de Bilhetes Online",
+            description: "Plataforma de e-commerce para venda de bilhetes online para eventos, shows e espetáculos com integração de pagamento.",
+            image: "assets/images/projects/ticket.jpg",
+            technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
+            github: "https://github.com/Ivandro150198/Ticket",
+            demo: "#",
             caseStudy: {
-                problem: "Necessidade de uma plataforma de e-commerce escalável com baixa latência.",
-                solution: "Arquitetura baseada em microserviços com cache Redis e CDN para performance.",
-                result: "Redução de 50% no tempo de carregamento e suporte para 10k usuários simultâneos."
-            }
-        },
-        {
-            id: 3,
-            title: "API de Serviços Financeiros",
-            description: "RESTful API para integração de serviços financeiros com autenticação OAuth2 e documentação Swagger.",
-            image: "assets/images/projects/project3.jpg",
-            technologies: ["Python", "Django", "PostgreSQL", "Docker", "JWT"],
-            github: "https://github.com/Ivandro150198/api-financeira",
-            demo: "https://api.financeira.com/docs",
-            caseStudy: {
-                problem: "Fragmentação de serviços financeiros em diferentes sistemas sem integração.",
-                solution: "API unificada com endpoints padronizados e sistema de rate limiting.",
-                result: "Integração de 15 sistemas diferentes com 99.9% de uptime."
+                problem: "Produtores de eventos precisavam de uma solução digital para vender bilhetes e gerenciar participantes.",
+                solution: "Criei uma plataforma completa com carrinho de compras, gateway de pagamento e emissão de bilhetes digitais.",
+                result: "Mais de 10.000 bilhetes vendidos e redução de 80% no trabalho manual de gestão."
             }
         }
     ],
@@ -272,57 +258,41 @@ function loadBlogPosts() {
 }
 
 // Load GitHub Widget
-function loadGitHubWidget() {
+async function loadGitHubWidget() {
     const container = document.getElementById('github-widget');
     if (!container) return;
     
     container.innerHTML = '<div class="text-center"><div class="loading"></div><p class="mt-2">Carregando repositórios...</p></div>';
     
-    // Simulate GitHub API call (replace with real API call)
-    setTimeout(() => {
-        const repos = [
-            {
-                name: "sistema-gestao",
-                description: "Sistema completo de gestão empresarial com módulos integrados",
-                stars: 45,
-                forks: 12,
-                language: "PHP"
-            },
-            {
-                name: "ecommerce-moderno",
-                description: "Plataforma de e-commerce construída com React e Node.js",
-                stars: 38,
-                forks: 8,
-                language: "JavaScript"
-            },
-            {
-                name: "api-financeira",
-                description: "API RESTful para serviços financeiros com autenticação OAuth2",
-                stars: 52,
-                forks: 15,
-                language: "Python"
-            }
-        ];
+    try {
+        const response = await fetch('https://api.github.com/users/Ivandro150198/repos?sort=updated&per_page=6');
+        const repos = await response.json();
         
         let html = '<h5 class="mb-4">Repositórios Recentes</h5>';
         repos.forEach(repo => {
+            const language = repo.language || 'Outros';
+            const description = repo.description || 'Repositório sem descrição';
+            
             html += `
                 <div class="github-repo">
-                    <a href="https://github.com/Ivandro150198/${repo.name}" target="_blank" class="repo-name">
+                    <a href="${repo.html_url}" target="_blank" class="repo-name">
                         <i class="fab fa-github me-1"></i> ${repo.name}
                     </a>
-                    <p class="repo-description">${repo.description}</p>
+                    <p class="repo-description">${description}</p>
                     <div class="repo-stats">
-                        <span><i class="fas fa-star text-warning"></i> ${repo.stars}</span>
-                        <span><i class="fas fa-code-branch text-info"></i> ${repo.forks}</span>
-                        <span><i class="fas fa-circle text-primary"></i> ${repo.language}</span>
+                        <span><i class="fas fa-star text-warning"></i> ${repo.stargazers_count}</span>
+                        <span><i class="fas fa-code-branch text-info"></i> ${repo.forks_count}</span>
+                        <span><i class="fas fa-circle text-primary"></i> ${language}</span>
                     </div>
                 </div>
             `;
         });
         
         container.innerHTML = html;
-    }, 1500);
+    } catch (error) {
+        console.error('Erro ao carregar repositórios:', error);
+        container.innerHTML = '<p class="text-center text-muted">Não foi possível carregar os repositórios no momento.</p>';
+    }
 }
 
 // Helper Functions
