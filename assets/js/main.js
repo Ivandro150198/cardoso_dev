@@ -12,19 +12,15 @@ const portfolioData = {
             id: 1,
             title: "Gestão de Armazéns",
             description: "Sistema web para controle de estoque e gestão de armazéns com dashboard em tempo real.",
-            image: "https://via.placeholder.com/400x250/1e3c72/ffffff?text=Gestão+de+Armazéns",
             technologies: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
-            github: "https://github.com/Ivandro150198/Gestao-de-Armazens",
-            demo: "#"
+            github: "https://github.com/Ivandro150198/Gestao-de-Armazens"
         },
         {
             id: 2,
             title: "Ticket - Venda de Bilhetes",
             description: "Plataforma online para venda de bilhetes de eventos com sistema de pagamento integrado.",
-            image: "https://via.placeholder.com/400x250/0f3460/ffffff?text=Ticket+Bilhetes",
             technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
-            github: "https://github.com/Ivandro150198/Ticket",
-            demo: "#"
+            github: "https://github.com/Ivandro150198/Ticket"
         }
     ],
     
@@ -100,7 +96,6 @@ function loadProjects() {
         const projectCard = `
             <div class="col-lg-4 col-md-6" data-aos="fade-up">
                 <div class="project-card">
-                    <img src="${project.image}" alt="${project.title}" class="project-image">
                     <div class="project-content">
                         <h3 class="project-title">${project.title}</h3>
                         <p class="project-description">${project.description}</p>
