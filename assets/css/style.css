@@ -403,6 +403,20 @@ body {
     border: 1px solid var(--border-color);
 }
 
+.project-links .github-link.private-project {
+    background: var(--bg-secondary);
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    cursor: default;
+    opacity: 0.8;
+}
+
+.project-links .github-link.private-project:hover {
+    transform: none;
+    box-shadow: none;
+    opacity: 0.8;
+}
+
 .project-links .demo-link {
     background: linear-gradient(135deg, var(--success-color), #00cc6a);
     color: var(--bg-primary);

@@ -21,6 +21,14 @@ const portfolioData = {
             description: "Plataforma online para venda de bilhetes de eventos com sistema de pagamento integrado.",
             technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
             github: "https://github.com/Ivandro150198/Ticket"
+        },
+        {
+            id: 3,
+            title: "Laboratório",
+            description: "Sistema de gestão laboratorial com controle de amostras, resultados e integração com equipamentos.",
+            technologies: ["PHP", "MySQL", "JavaScript", "HTML", "CSS"],
+            github: "#",
+            private: true
         }
     ],
     
@@ -93,6 +101,10 @@ function loadProjects() {
     container.innerHTML = '';
     
     portfolioData.projects.forEach(project => {
+        const githubLink = project.private ? "#" : project.github;
+        const githubText = project.private ? "Privado" : "Código";
+        const githubIcon = project.private ? "fas fa-lock" : "fab fa-github";
+        
         const projectCard = `
             <div class="col-lg-4 col-md-6" data-aos="fade-up">
                 <div class="project-card">
@@ -105,11 +117,11 @@ function loadProjects() {
                         </div>
                         
                         <div class="project-links">
-                            <a href="${project.github}" target="_blank" class="github-link">
-                                <i class="fab fa-github me-1"></i> Código
+                            <a href="${githubLink}" target="_blank" class="github-link ${project.private ? 'private-project' : ''}">
+                                <i class="${githubIcon} me-1"></i> ${githubText}
                             </a>
-                            <a href="${project.github}" target="_blank" class="demo-link">
-                                <i class="fas fa-external-link-alt me-1"></i> Ver Projeto
+                            <a href="${githubLink}" target="_blank" class="demo-link">
+                                <i class="fas fa-info-circle me-1"></i> Detalhes
                             </a>
                         </div>
                     </div>
