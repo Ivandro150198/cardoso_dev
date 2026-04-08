@@ -7,7 +7,13 @@ AOS.init({
 
 // Initialize EmailJS
 (function() {
-    emailjs.init("tEa69C4BAnfdNfOV1"); // Chave pública do EmailJS
+    // Verificar se o EmailJS foi carregado
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init("tEa69C4BAnfdNfOV1"); // Chave pública do EmailJS
+        console.log('EmailJS inicializado com sucesso');
+    } else {
+        console.error('EmailJS não foi carregado corretamente');
+    }
 })();
 
 // Portfolio Data
@@ -314,17 +320,26 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = true;
             
             // Send email using EmailJS
-            emailjs.send('service_kmhaeti', 'template_f5iorb4', formData)
-                .then(function(response) {
-                    showMessage('Mensagem enviada com sucesso! Entrarei em contato em breve.', 'success');
-                    contactForm.reset();
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                }, function(error) {
-                    showMessage('Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.', 'danger');
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                });
+            if (typeof emailjs !== 'undefined') {
+                emailjs.send('service_kmhaeti', 'template_f5iorb4', formData)
+                    .then(function(response) {
+                        console.log('Email enviado com sucesso:', response);
+                        showMessage('Mensagem enviada com sucesso! Entrarei em contato em breve.', 'success');
+                        contactForm.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }, function(error) {
+                        console.error('Erro ao enviar email:', error);
+                        showMessage('Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.', 'danger');
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    });
+            } else {
+                console.error('EmailJS não está disponível');
+                showMessage('Serviço de email não está disponível no momento. Por favor, tente mais tarde.', 'warning');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
         });
     }
     
