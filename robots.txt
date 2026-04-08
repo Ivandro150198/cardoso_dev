@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ivandro150198.github.io/cardoso_dev/sitemap.xml
+
+# Block common bots
+Disallow: /assets/
+Disallow: /*.json$
+Disallow: /*.js$
