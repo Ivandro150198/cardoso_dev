@@ -5,6 +5,11 @@ AOS.init({
     offset: 100
 });
 
+// Initialize EmailJS
+(function() {
+    emailjs.init("YOUR_PUBLIC_KEY"); // Você precisa configurar isso
+})();
+
 // Portfolio Data
 const portfolioData = {
     projects: [
@@ -254,15 +259,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
                 subject: document.getElementById('subject').value,
-                message: document.getElementById('message').value,
-                humanCheck: document.getElementById('human-check').checked
+                message: document.getElementById('message').value
             };
-            
-            // Simple validation
-            if (!formData.humanCheck) {
-                showMessage('Por favor, confirme que você não é um robô.', 'danger');
-                return;
-            }
             
             // Show loading state
             const submitBtn = contactForm.querySelector('button[type="submit"]');
@@ -270,13 +268,18 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.innerHTML = '<span class="loading"></span> Enviando...';
             submitBtn.disabled = true;
             
-            // Simulate form submission
-            setTimeout(() => {
-                showMessage('Mensagem enviada com sucesso! Entrarei em contato em breve.', 'success');
-                contactForm.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
+            // Send email using EmailJS
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
+                .then(function(response) {
+                    showMessage('Mensagem enviada com sucesso! Entrarei em contato em breve.', 'success');
+                    contactForm.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, function(error) {
+                    showMessage('Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.', 'danger');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                });
         });
     }
     
