@@ -247,6 +247,18 @@ function getCategoryIcon(category) {
     return icons[category] || "code";
 }
 
+function getSubjectText(subjectValue) {
+    const subjects = {
+        'projeto': 'Proposta de Novo Projeto',
+        'colaboracao': 'Oportunidade de Colaboração',
+        'duvida': 'Consulta Técnica ou Suporte',
+        'curriculo': 'Solicitação de Currículo',
+        'feedback': 'Feedback ou Sugestão',
+        'outro': 'Outro Assunto'
+    };
+    return subjects[subjectValue] || subjectValue;
+}
+
 
 // Contact Form Handler
 document.addEventListener('DOMContentLoaded', function() {
