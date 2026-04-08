@@ -255,17 +255,50 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
+            // Validate form
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value.trim();
+            const privacyCheck = document.getElementById('privacy-check').checked;
+            
+            // Basic validation
+            if (name.length < 3) {
+                showMessage('Por favor, insira seu nome completo.', 'danger');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showMessage('Por favor, insira um email válido.', 'danger');
+                return;
+            }
+            
+            if (!subject) {
+                showMessage('Por favor, selecione um assunto.', 'danger');
+                return;
+            }
+            
+            if (message.length < 10) {
+                showMessage('A mensagem deve ter pelo menos 10 caracteres.', 'danger');
+                return;
+            }
+            
+            if (!privacyCheck) {
+                showMessage('Por favor, concorde com a política de privacidade.', 'danger');
+                return;
+            }
+            
             const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                subject: document.getElementById('subject').value,
-                message: document.getElementById('message').value
+                name: name,
+                email: email,
+                subject: getSubjectText(subject),
+                message: message
             };
             
             // Show loading state
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="loading"></span> Enviando...';
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Enviando...';
             submitBtn.disabled = true;
             
             // Send email using EmailJS
@@ -289,27 +322,6 @@ document.addEventListener('DOMContentLoaded', function() {
     loadExperience();
     loadGitHubWidget();
 });
-
-function showMessage(message, type) {
-    const messageContainer = document.getElementById('form-message');
-    if (messageContainer) {
-        messageContainer.innerHTML = `
-            <div class="alert alert-${type} alert-dismissible fade show" role="alert">
-                ${message}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        `;
-        
-        // Auto-hide after 5 seconds
-        setTimeout(() => {
-            const alert = messageContainer.querySelector('.alert');
-            if (alert) {
-                alert.classList.remove('show');
-                setTimeout(() => alert.remove(), 150);
-            }
-        }, 5000);
-    }
-}
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
