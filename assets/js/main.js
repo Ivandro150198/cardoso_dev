@@ -397,12 +397,40 @@ function getSubjectText(subjectValue) {
 // Contact Form Handler
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🔍 Inicializando formulário de contato...');
+    console.log('📋 DOM ready, buscando formulário...');
+    
+    // Verificar todos os formulários na página
+    const allForms = document.querySelectorAll('form');
+    console.log('📝 Formulários encontrados na página:', allForms.length);
     
     const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        console.log('✅ Formulário encontrado:', contactForm);
+    console.log('🔍 Buscando formulário com ID "contact-form"...');
+    console.log('📋 Resultado da busca:', contactForm);
+    
+    if (!contactForm) {
+        console.error('❌ ERRO CRÍTICO: Formulário não encontrado!');
+        console.log('🔍 Tentando encontrar por outros meios...');
         
-        contactForm.addEventListener('submit', function(e) {
+        // Tentar encontrar por classe
+        const formByClass = document.querySelector('.contact-form');
+        console.log('📋 Formulário por classe:', formByClass);
+        
+        // Tentar encontrar por seção
+        const formInSection = document.querySelector('#contact form');
+        console.log('📋 Formulário na seção:', formInSection);
+        
+        // Listar todos os elementos com form
+        console.log('📋 Todos os elementos form:', document.forms);
+        
+        return;
+    }
+    
+    console.log('✅ Formulário encontrado:', contactForm);
+    console.log('📋 Tipo do elemento:', contactForm.tagName);
+    console.log('📋 Classes do formulário:', contactForm.className);
+    
+    // Adicionar listener ao formulário
+    contactForm.addEventListener('submit', function(e) {
             console.log('📝 Formulário submetido, prevenindo default...');
             e.preventDefault();
             
