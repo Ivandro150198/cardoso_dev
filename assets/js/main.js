@@ -7,7 +7,7 @@ AOS.init({
 
 // Initialize EmailJS
 (function() {
-    emailjs.init("YOUR_PUBLIC_KEY"); // Você precisa configurar isso
+    emailjs.init("tEa69C4BAnfdNfOV1"); // Chave pública do EmailJS
 })();
 
 // Portfolio Data
@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = true;
             
             // Send email using EmailJS
-            emailjs.send('service_kmhaeti', 'YOUR_TEMPLATE_ID', formData)
+            emailjs.send('service_kmhaeti', 'template_f5iorb4', formData)
                 .then(function(response) {
                     showMessage('Mensagem enviada com sucesso! Entrarei em contato em breve.', 'success');
                     contactForm.reset();
