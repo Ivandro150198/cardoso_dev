@@ -168,8 +168,9 @@ function loadProjects() {
         container.innerHTML = '';
         
         portfolioData.projects.forEach((project, index) => {
+            const techClasses = project.technologies.map(tech => tech.toLowerCase()).join(' ');
             const projectCard = `
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="${index * 100}">
+                <div class="col-lg-4 col-md-6 project-item" data-aos="fade-up" data-aos-delay="${index * 100}" data-tech="${techClasses}">
                     <div class="project-card">
                         <div class="project-content">
                             <h3 class="project-title">${project.title}</h3>
@@ -194,9 +195,48 @@ function loadProjects() {
             container.innerHTML += projectCard;
         });
         
+        // Initialize filters
+        initProjectFilters();
+        
         // Reinitialize AOS for new elements
         AOS.refresh();
     }, 800);
+}
+
+// Initialize Project Filters
+function initProjectFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filter = this.dataset.filter;
+            
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filter projects
+            filterProjects(filter);
+        });
+    });
+}
+
+// Filter Projects
+function filterProjects(filter) {
+    const projectCards = document.querySelectorAll('.project-item');
+    
+    projectCards.forEach(card => {
+        if (filter === 'all') {
+            card.classList.remove('filtered-out');
+        } else {
+            const techTags = card.dataset.tech;
+            if (techTags.includes(filter)) {
+                card.classList.remove('filtered-out');
+            } else {
+                card.classList.add('filtered-out');
+            }
+        }
+    });
 }
 
 // Generate project skeleton loading

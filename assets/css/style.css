@@ -944,6 +944,58 @@ img.lazy.loaded {
     transform: scale(1);
 }
 
+/* Project Filters */
+.project-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.filter-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-btn:hover {
+    background: var(--primary-color);
+    color: var(--bg-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    color: var(--bg-primary);
+    box-shadow: 0 3px 10px rgba(0, 212, 255, 0.3);
+}
+
+.filter-btn i {
+    font-size: 0.9rem;
+}
+
+/* Filtered Projects */
+.project-card.filtered-out {
+    opacity: 0.3;
+    transform: scale(0.9);
+    pointer-events: none;
+}
+
+.project-card.filtered-out:hover {
+    opacity: 0.3;
+    transform: scale(0.9);
+}
+
 .btn-primary {
     background: linear-gradient(135deg, var(--primary-color), var(--info-color));
     border: none;
