@@ -396,9 +396,14 @@ function getSubjectText(subjectValue) {
 
 // Contact Form Handler
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('🔍 Inicializando formulário de contato...');
+    
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
+        console.log('✅ Formulário encontrado:', contactForm);
+        
         contactForm.addEventListener('submit', function(e) {
+            console.log('📝 Formulário submetido, prevenindo default...');
             e.preventDefault();
             
             // Validate form
@@ -408,31 +413,48 @@ document.addEventListener('DOMContentLoaded', function() {
             const message = document.getElementById('message').value.trim();
             const privacyCheck = document.getElementById('privacy-check').checked;
             
+            console.log('📋 Dados do formulário:', {
+                name: name,
+                email: email,
+                subject: subject,
+                message: message,
+                privacyCheck: privacyCheck
+            });
+            
             // Basic validation
+            console.log('🔍 Iniciando validação...');
+            
             if (name.length < 3) {
+                console.log('❌ Validação falhou: nome muito curto');
                 showMessage('Por favor, insira seu nome completo.', 'danger');
                 return;
             }
             
             if (!validateEmail(email)) {
+                console.log('❌ Validação falhou: email inválido');
                 showMessage('Por favor, insira um email válido.', 'danger');
                 return;
             }
             
             if (!subject) {
+                console.log('❌ Validação falhou: assunto não selecionado');
                 showMessage('Por favor, selecione um assunto.', 'danger');
                 return;
             }
             
             if (message.length < 10) {
+                console.log('❌ Validação falhou: mensagem muito curta');
                 showMessage('A mensagem deve ter pelo menos 10 caracteres.', 'danger');
                 return;
             }
             
             if (!privacyCheck) {
+                console.log('❌ Validação falhou: política de privacidade não aceita');
                 showMessage('Por favor, concorde com a política de privacidade.', 'danger');
                 return;
             }
+            
+            console.log('✅ Validação passou! Preparando envio...');
             
             const formData = {
                 name: name,
@@ -444,8 +466,14 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show loading state
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
+            
+            console.log('🔘 Botão encontrado:', submitBtn);
+            console.log('📝 Texto original:', originalText);
+            
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Enviando...';
             submitBtn.disabled = true;
+            
+            console.log('⏳ Loading state ativado');
             
             // Send email using EmailJS
             if (typeof emailjs !== 'undefined') {
