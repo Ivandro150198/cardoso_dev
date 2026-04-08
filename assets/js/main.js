@@ -72,31 +72,6 @@ function updateThemeIcon(theme) {
     }
 })();
 
-// Test EmailJS Configuration
-function testEmailJS() {
-    if (typeof emailjs !== 'undefined') {
-        const testData = {
-            name: 'Teste Portfólio',
-            email: 'teste@exemplo.com',
-            subject: 'projeto',
-            message: 'Esta é uma mensagem de teste do formulário de contato.'
-        };
-        
-        console.log('🧪 Enviando email de teste...');
-        
-        emailjs.send('service_kmhaeti', 'template_f5iorb4', testData)
-            .then(function(response) {
-                console.log('✅ Email de teste enviado com sucesso:', response);
-                alert('✅ EmailJS está funcionando! O email de teste foi enviado.');
-            })
-            .catch(function(error) {
-                console.error('❌ Erro no email de teste:', error);
-                alert('❌ Erro ao enviar email de teste: ' + error.text);
-            });
-    } else {
-        alert('❌ EmailJS não está disponível para teste.');
-    }
-}
 
 // Portfolio Data
 const portfolioData = {

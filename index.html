@@ -259,13 +259,13 @@
                                 <label for="name" class="form-label">
                                     <i class="fas fa-user me-1"></i> Nome
                                 </label>
-                                <input type="text" class="form-control" id="name" placeholder="Seu nome completo" required>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Seu nome completo" required autocomplete="name">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email" class="form-label">
                                     <i class="fas fa-envelope me-1"></i> Email
                                 </label>
-                                <input type="email" class="form-control" id="email" placeholder="seu@email.com" required>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="seu@email.com" required autocomplete="email">
                             </div>
                         </div>
                         
@@ -273,7 +273,7 @@
                             <label for="subject" class="form-label">
                                 <i class="fas fa-tag me-1"></i> Assunto
                             </label>
-                            <select class="form-control form-select-lg" id="subject" required style="font-size: 1.1rem; padding: 12px; color: var(--text-primary); background-color: var(--bg-secondary); border: 1px solid var(--border-color);">
+                            <select class="form-control form-select-lg" id="subject" name="subject" required style="font-size: 1.1rem; padding: 12px; color: var(--text-primary); background-color: var(--bg-secondary); border: 1px solid var(--border-color);">
                                 <option value="">-- Selecione uma opção --</option>
                                 <option value="projeto">Proposta de Novo Projeto</option>
                                 <option value="colaboracao">Oportunidade de Colaboração</option>
@@ -288,23 +288,24 @@
                             <label for="message" class="form-label">
                                 <i class="fas fa-comment me-1"></i> Mensagem
                             </label>
-                            <textarea class="form-control" id="message" rows="5" placeholder="Descreva sua mensagem detalhadamente..." required style="color: var(--text-primary); background-color: var(--bg-secondary); border: 1px solid var(--border-color);"></textarea>
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Descreva sua mensagem detalhadamente..." required autocomplete="off" style="color: var(--text-primary); background-color: var(--bg-secondary); border: 1px solid var(--border-color);"></textarea>
                             <small class="text-muted">Mínimo 10 caracteres</small>
                         </div>
                         
                         <div class="mb-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="privacy-check" required>
+                                <input class="form-check-input" type="checkbox" id="privacy-check" name="privacy" required aria-describedby="privacy-help">
                                 <label class="form-check-label" for="privacy-check">
                                     Concordo com a política de privacidade e autorizo o contato via email
                                 </label>
+                                <small id="privacy-help" class="form-text text-muted">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    Seus dados estão seguros e não serão compartilhados com terceiros.
+                                </small>
                             </div>
                         </div>
                         
                         <div class="text-center">
-                            <button type="button" class="btn btn-outline-warning btn-sm mb-3" onclick="testEmailJS()">
-                                <i class="fas fa-bug me-2"></i> Testar EmailJS
-                            </button>
                             <button type="submit" class="btn btn-primary btn-lg px-5">
                                 <i class="fas fa-paper-plane me-2"></i> Enviar Mensagem
                             </button>
