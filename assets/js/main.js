@@ -242,13 +242,6 @@ function getCategoryIcon(category) {
     return icons[category] || "code";
 }
 
-function openBlogPost(postId) {
-    const post = portfolioData.blogPosts.find(p => p.id === postId);
-    if (post) {
-        // In a real application, this would navigate to a blog post page
-        alert(`Abrindo post: ${post.title}\n\nEm uma implementação real, isso navegaria para a página completa do post.`);
-    }
-}
 
 // Contact Form Handler
 document.addEventListener('DOMContentLoaded', function() {
@@ -398,6 +391,6 @@ const observer = new IntersectionObserver(function(entries) {
 
 // Observe elements for animation
 document.addEventListener('DOMContentLoaded', function() {
-    const animatedElements = document.querySelectorAll('.skill-progress, .timeline-item, .project-card, .blog-card');
+    const animatedElements = document.querySelectorAll('.skill-progress, .timeline-item, .project-card');
     animatedElements.forEach(el => observer.observe(el));
 });
