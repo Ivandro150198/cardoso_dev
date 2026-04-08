@@ -109,38 +109,69 @@ function loadProjects() {
     const container = document.getElementById('projects-container');
     if (!container) return;
     
-    container.innerHTML = '';
+    // Show skeleton loading
+    container.innerHTML = generateProjectSkeletons(3);
     
-    portfolioData.projects.forEach(project => {
-        const githubLink = project.private ? "#" : project.github;
-        const githubText = project.private ? "Privado" : "Código";
-        const githubIcon = project.private ? "fas fa-lock" : "fab fa-github";
+    // Simulate loading delay for better UX
+    setTimeout(() => {
+        container.innerHTML = '';
         
-        const projectCard = `
-            <div class="col-lg-4 col-md-6" data-aos="fade-up">
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">${project.title}</h3>
-                        <p class="project-description">${project.description}</p>
-                        
-                        <div class="project-tech">
-                            ${project.technologies.map(tech => `<span class="tech-badge">${tech}</span>`).join('')}
+        portfolioData.projects.forEach((project, index) => {
+            const projectCard = `
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="${index * 100}">
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3 class="project-title">${project.title}</h3>
+                            <p class="project-description">${project.description}</p>
+                            
+                            <div class="project-tech">
+                                ${project.technologies.map(tech => `<span class="tech-badge">${tech}</span>`).join('')}
+                            </div>
+                            
+                            <div class="project-links">
+                                <a href="${project.github}" target="_blank" class="github-link ${project.private ? 'private-project' : ''}">
+                                    <i class="${project.private ? 'fas fa-lock' : 'fab fa-github'} me-1"></i> ${project.private ? 'Privado' : 'Código'}
+                                </a>
+                                <a href="${project.github}" target="_blank" class="demo-link">
+                                    <i class="fas fa-info-circle me-1"></i> Detalhes
+                                </a>
+                            </div>
                         </div>
-                        
-                        <div class="project-links">
-                            <a href="${githubLink}" target="_blank" class="github-link ${project.private ? 'private-project' : ''}">
-                                <i class="${githubIcon} me-1"></i> ${githubText}
-                            </a>
-                            <a href="${githubLink}" target="_blank" class="demo-link">
-                                <i class="fas fa-info-circle me-1"></i> Detalhes
-                            </a>
-                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += projectCard;
+        });
+        
+        // Reinitialize AOS for new elements
+        AOS.refresh();
+    }, 800);
+}
+
+// Generate project skeleton loading
+function generateProjectSkeletons(count) {
+    let skeletons = '';
+    for (let i = 0; i < count; i++) {
+        skeletons += `
+            <div class="col-lg-4 col-md-6">
+                <div class="project-card skeleton-card">
+                    <div class="skeleton skeleton-title"></div>
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="project-tech">
+                        <div class="skeleton skeleton-badge"></div>
+                        <div class="skeleton skeleton-badge"></div>
+                        <div class="skeleton skeleton-badge"></div>
+                    </div>
+                    <div class="project-links">
+                        <div class="skeleton skeleton-button"></div>
+                        <div class="skeleton skeleton-button"></div>
                     </div>
                 </div>
             </div>
         `;
-        container.innerHTML += projectCard;
-    });
+    }
+    return skeletons;
 }
 
 // Load Skills
@@ -348,6 +379,32 @@ document.addEventListener('DOMContentLoaded', function() {
     loadSkills();
     loadExperience();
     loadGitHubWidget();
+});
+
+// Back to Top Button
+const backToTopButton = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('show');
+    } else {
+        backToTopButton.classList.remove('show');
+    }
+    
+    // Add scroll indicator to navbar
+    const navbar = document.getElementById('mainNav');
+    if (window.pageYOffset > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 });
 
 // Smooth scrolling for navigation links
