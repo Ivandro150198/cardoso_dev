@@ -11,6 +11,8 @@
     --info-color: #00d4ff;
     --light-color: #1a1a2e;
     --dark-color: #ffffff;
+    
+    /* Dark Theme (Default) */
     --bg-primary: #0f0f23;
     --bg-secondary: #16213e;
     --bg-tertiary: #1a1a2e;
@@ -19,10 +21,23 @@
     --text-muted: #8892b0;
     --border-color: #2a2d3a;
     --card-bg: #1a1a2e;
+    
     --font-family: 'Inter', sans-serif;
     --border-radius: 0.75rem;
     --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light Theme */
+[data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --text-muted: #adb5bd;
+    --border-color: #dee2e6;
+    --card-bg: #ffffff;
 }
 
 /* Global Styles */
@@ -67,6 +82,16 @@ body {
     border-radius: var(--border-radius);
     transition: var(--transition);
     color: var(--text-secondary) !important;
+    position: relative;
+}
+
+.navbar-nav .nav-link {
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
     position: relative;
 }
 
