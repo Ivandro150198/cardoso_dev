@@ -61,11 +61,42 @@ function updateThemeIcon(theme) {
     // Verificar se o EmailJS foi carregado
     if (typeof emailjs !== 'undefined') {
         emailjs.init("tEa69C4BAnfdNfOV1"); // Chave pública do EmailJS
-        console.log('EmailJS inicializado com sucesso');
+        console.log('✅ EmailJS inicializado com sucesso');
+        console.log('📧 Configurações:', {
+            service: 'service_kmhaeti',
+            template: 'template_f5iorb4',
+            publicKey: 'tEa69C4BAnfdNfOV1'
+        });
     } else {
-        console.error('EmailJS não foi carregado corretamente');
+        console.error('❌ EmailJS não foi carregado corretamente');
     }
 })();
+
+// Test EmailJS Configuration
+function testEmailJS() {
+    if (typeof emailjs !== 'undefined') {
+        const testData = {
+            name: 'Teste Portfólio',
+            email: 'teste@exemplo.com',
+            subject: 'projeto',
+            message: 'Esta é uma mensagem de teste do formulário de contato.'
+        };
+        
+        console.log('🧪 Enviando email de teste...');
+        
+        emailjs.send('service_kmhaeti', 'template_f5iorb4', testData)
+            .then(function(response) {
+                console.log('✅ Email de teste enviado com sucesso:', response);
+                alert('✅ EmailJS está funcionando! O email de teste foi enviado.');
+            })
+            .catch(function(error) {
+                console.error('❌ Erro no email de teste:', error);
+                alert('❌ Erro ao enviar email de teste: ' + error.text);
+            });
+    } else {
+        alert('❌ EmailJS não está disponível para teste.');
+    }
+}
 
 // Portfolio Data
 const portfolioData = {
@@ -443,22 +474,41 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Send email using EmailJS
             if (typeof emailjs !== 'undefined') {
+                console.log('Tentando enviar email...', formData);
+                
                 emailjs.send('service_kmhaeti', 'template_f5iorb4', formData)
                     .then(function(response) {
-                        console.log('Email enviado com sucesso:', response);
+                        console.log('✅ Email enviado com sucesso:', response);
                         showMessage('Mensagem enviada com sucesso! Entrarei em contato em breve.', 'success');
                         contactForm.reset();
                         submitBtn.innerHTML = originalText;
                         submitBtn.disabled = false;
                     }, function(error) {
-                        console.error('Erro ao enviar email:', error);
-                        showMessage('Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.', 'danger');
+                        console.error('❌ Erro ao enviar email:', error);
+                        console.error('Detalhes do erro:', {
+                            status: error.status,
+                            text: error.text,
+                            data: formData
+                        });
+                        
+                        // Mensagens de erro específicas
+                        let errorMessage = 'Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.';
+                        
+                        if (error.status === 429) {
+                            errorMessage = 'Muitas tentativas de envio. Por favor, aguarde alguns minutos antes de tentar novamente.';
+                        } else if (error.status === 400) {
+                            errorMessage = 'Dados inválidos. Por favor, verifique todos os campos e tente novamente.';
+                        } else if (error.status === 451) {
+                            errorMessage = 'Serviço temporariamente indisponível. Por favor, tente novamente em alguns minutos.';
+                        }
+                        
+                        showMessage(errorMessage, 'danger');
                         submitBtn.innerHTML = originalText;
                         submitBtn.disabled = false;
                     });
             } else {
-                console.error('EmailJS não está disponível');
-                showMessage('Serviço de email não está disponível no momento. Por favor, tente mais tarde.', 'warning');
+                console.error('❌ EmailJS não está disponível');
+                showMessage('Serviço de email não está disponível no momento. Por favor, recarregue a página e tente novamente.', 'warning');
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             }
