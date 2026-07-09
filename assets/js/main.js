@@ -56,21 +56,68 @@ function updateThemeIcon(theme) {
     }
 }
 
-// Initialize EmailJS
-(function() {
-    // Verificar se o EmailJS foi carregado
-    if (typeof emailjs !== 'undefined') {
-        emailjs.init("tEa69C4BAnfdNfOV1"); // Chave pública do EmailJS
-        console.log('✅ EmailJS inicializado com sucesso');
-        console.log('📧 Configurações:', {
-            service: 'service_kmhaeti',
-            template: 'template_f5iorb4',
-            publicKey: 'tEa69C4BAnfdNfOV1'
-        });
-    } else {
-        console.error('❌ EmailJS não foi carregado corretamente');
+// Email validation function
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Show message function
+function showMessage(message, type = 'info') {
+    const messageContainer = document.getElementById('form-message');
+    if (!messageContainer) {
+        console.error('Message container not found');
+        return;
     }
-})();
+    
+    // Clear previous messages
+    messageContainer.innerHTML = '';
+    
+    // Create alert element
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+    alertDiv.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    `;
+    
+    // Add to container
+    messageContainer.appendChild(alertDiv);
+    
+    // Auto-hide after 5 seconds for success messages
+    if (type === 'success') {
+        setTimeout(() => {
+            alertDiv.classList.remove('show');
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.parentNode.removeChild(alertDiv);
+                }
+            }, 150);
+        }, 5000);
+    }
+}
+
+// EmailJS initialization - DO NOT hard-code secrets in client-side code.
+// Read EmailJS configuration from meta tags injected by the server (recommended),
+// otherwise keep them empty and handle form submission on the backend.
+const EMAILJS_PUBLIC_KEY = document.querySelector('meta[name="emailjs-public-key"]')?.content || null;
+const EMAILJS_SERVICE_ID = document.querySelector('meta[name="emailjs-service-id"]')?.content || null;
+const EMAILJS_TEMPLATE_ID = document.querySelector('meta[name="emailjs-template-id"]')?.content || null;
+
+if (typeof emailjs !== 'undefined') {
+    if (EMAILJS_PUBLIC_KEY) {
+        try {
+            emailjs.init(EMAILJS_PUBLIC_KEY);
+            console.log('✅ EmailJS inicializado (public key from meta)');
+        } catch (err) {
+            console.error('❌ Falha ao inicializar EmailJS:', err);
+        }
+    } else {
+        console.warn('⚠️ EmailJS carregado, mas nenhuma public key foi encontrada. Configure via meta tags injetadas pelo servidor.');
+    }
+} else {
+    console.warn('⚠️ EmailJS não encontrado. Formulário deverá usar backend para envio de emails.');
+}
 
 
 // Portfolio Data
@@ -163,8 +210,12 @@ const portfolioData = {
 
 // Load Projects
 function loadProjects() {
+    console.log('loadProjects: Iniciando carregamento de projetos...');
     const container = document.getElementById('projects-container');
-    if (!container) return;
+    if (!container) {
+        console.error('loadProjects: Container #projects-container não encontrado');
+        return;
+    }
     
     // Show skeleton loading
     container.innerHTML = generateProjectSkeletons(3);
@@ -273,8 +324,12 @@ function generateProjectSkeletons(count) {
 
 // Load Skills
 function loadSkills() {
+    console.log('loadSkills: Iniciando carregamento de habilidades...');
     const container = document.getElementById('skills-container');
-    if (!container) return;
+    if (!container) {
+        console.error('loadSkills: Container #skills-container não encontrado');
+        return;
+    }
     
     container.innerHTML = '';
     
@@ -310,8 +365,12 @@ function loadSkills() {
 
 // Load Experience
 function loadExperience() {
+    console.log('loadExperience: Iniciando carregamento de experiência...');
     const container = document.getElementById('experience-container');
-    if (!container) return;
+    if (!container) {
+        console.error('loadExperience: Container #experience-container não encontrado');
+        return;
+    }
     
     container.innerHTML = '';
     
@@ -334,8 +393,12 @@ function loadExperience() {
 
 // Load GitHub Widget
 async function loadGitHubWidget() {
+    console.log('loadGitHubWidget: Iniciando carregamento do widget GitHub...');
     const container = document.getElementById('github-widget');
-    if (!container) return;
+    if (!container) {
+        console.error('loadGitHubWidget: Container #github-widget não encontrado');
+        return;
+    }
     
     container.innerHTML = '<div class="text-center"><div class="loading"></div><p class="mt-2">Carregando repositórios...</p></div>';
     
@@ -364,9 +427,49 @@ async function loadGitHubWidget() {
         });
         
         container.innerHTML = html;
+        console.log('loadGitHubWidget: Repositórios carregados com sucesso');
     } catch (error) {
-        console.error('Erro ao carregar repositórios:', error);
-        container.innerHTML = '<p class="text-center text-muted">Não foi possível carregar os repositórios no momento.</p>';
+        console.error('loadGitHubWidget: Erro ao carregar repositórios:', error);
+        
+        // Fallback com dados estáticos se houver erro de CORS ou rede
+        const fallbackRepos = [
+            {
+                name: "Gestão de Armazéns",
+                html_url: "https://github.com/Ivandro150198/Gestao-de-Armazens",
+                description: "Sistema web para controle de estoque e gestão de armazéns",
+                stargazers_count: 0,
+                forks_count: 0,
+                language: "PHP"
+            },
+            {
+                name: "Ticket - Venda de Bilhetes",
+                html_url: "https://github.com/Ivandro150198/Ticket",
+                description: "Plataforma online para venda de bilhetes de eventos",
+                stargazers_count: 0,
+                forks_count: 0,
+                language: "JavaScript"
+            }
+        ];
+        
+        let html = '<h5 class="mb-4">Repositórios Recentes</h5>';
+        fallbackRepos.forEach(repo => {
+            html += `
+                <div class="github-repo">
+                    <a href="${repo.html_url}" target="_blank" class="repo-name">
+                        <i class="fab fa-github me-1"></i> ${repo.name}
+                    </a>
+                    <p class="repo-description">${repo.description}</p>
+                    <div class="repo-stats">
+                        <span><i class="fas fa-star text-warning"></i> ${repo.stargazers_count}</span>
+                        <span><i class="fas fa-code-branch text-info"></i> ${repo.forks_count}</span>
+                        <span><i class="fas fa-circle text-primary"></i> ${repo.language}</span>
+                    </div>
+                </div>
+            `;
+        });
+        
+        container.innerHTML = html;
+        console.log('loadGitHubWidget: Usando dados fallback devido a erro na API');
     }
 }
 
@@ -503,11 +606,11 @@ document.addEventListener('DOMContentLoaded', function() {
             
             console.log('⏳ Loading state ativado');
             
-            // Send email using EmailJS
-            if (typeof emailjs !== 'undefined') {
-                console.log('Tentando enviar email...', formData);
-                
-                emailjs.send('service_kmhaeti', 'template_f5iorb4', formData)
+            // Send email using EmailJS (ONLY if service/template are provided via server meta tags)
+            if (typeof emailjs !== 'undefined' && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID) {
+                console.log('Tentando enviar email via EmailJS...', formData);
+
+                emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formData)
                     .then(function(response) {
                         console.log('✅ Email enviado com sucesso:', response);
                         showMessage('Mensagem enviada com sucesso! Entrarei em contato em breve.', 'success');
@@ -538,22 +641,52 @@ document.addEventListener('DOMContentLoaded', function() {
                         submitBtn.disabled = false;
                     });
             } else {
-                console.error('❌ EmailJS não está disponível');
-                showMessage('Serviço de email não está disponível no momento. Por favor, recarregue a página e tente novamente.', 'warning');
+                console.warn('⚠️ EmailJS não está configurado no cliente. Envio será tratado pelo backend ou desativado.');
+                showMessage('Envio desativado: serviço de email não está configurado no cliente. Por favor, tente novamente mais tarde ou use o canal alternativo.', 'warning');
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             }
         });
-    }
     
     // Load all content
-    loadProjects();
-    loadSkills();
-    loadExperience();
-    loadGitHubWidget();
+    console.log('DOMContentLoaded: Iniciando carregamento de todos os conteúdos...');
+    try {
+        loadProjects();
+        console.log('DOMContentLoaded: loadProjects executado');
+    } catch (error) {
+        console.error('DOMContentLoaded: Erro em loadProjects:', error);
+    }
+    
+    try {
+        loadSkills();
+        console.log('DOMContentLoaded: loadSkills executado');
+    } catch (error) {
+        console.error('DOMContentLoaded: Erro em loadSkills:', error);
+    }
+    
+    try {
+        loadExperience();
+        console.log('DOMContentLoaded: loadExperience executado');
+    } catch (error) {
+        console.error('DOMContentLoaded: Erro em loadExperience:', error);
+    }
+    
+    try {
+        loadGitHubWidget();
+        console.log('DOMContentLoaded: loadGitHubWidget executado');
+    } catch (error) {
+        console.error('DOMContentLoaded: Erro em loadGitHubWidget:', error);
+    }
     
     // Initialize lazy loading
-    initLazyLoading();
+    try {
+        initLazyLoading();
+        console.log('DOMContentLoaded: initLazyLoading executado');
+    } catch (error) {
+        console.error('DOMContentLoaded: Erro em initLazyLoading:', error);
+    }
+    
+    console.log('DOMContentLoaded: Carregamento de conteúdos concluído');
 });
 
 // Back to Top Button
