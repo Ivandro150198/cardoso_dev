@@ -14,7 +14,6 @@ const portfolioData = {
             description: "Loja online de roupas e acessórios com catálogo e experiência de compra focada no retalho digital.",
             technologies: ["PHP", "CSS", "JavaScript"],
             github: "https://github.com/Ivandro150198/Nu_Chao",
-            demo: "https://nu-chao.vercel.app",
             private: false
         },
         {
