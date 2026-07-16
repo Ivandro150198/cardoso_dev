@@ -4,50 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Engenheiro de Software Full-stack especializado em desenvolvimento de sistemas escaláveis e arquitetura de dados">
-    <!-- Security: Example meta tags for runtime-configured EmailJS (set values on server) -->
-    <meta name="emailjs-public-key" content="">
-    <meta name="emailjs-service-id" content="">
-    <meta name="emailjs-template-id" content="">
-    <!-- Example CSP - adjust on server to match allowed sources; prefer setting via HTTP header -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://api.emailjs.com; font-src https://fonts.gstatic.com;">
     <meta name="keywords" content="engenheiro de software, full-stack, desenvolvimento web, PHP, JavaScript, arquitetura de dados">
     <meta name="author" content="Ivandro Cardoso">
-    
-    <!-- Open Graph / Facebook -->
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ivandro150198.github.io/cardoso_dev/">
     <meta property="og:title" content="Ivandro Cardoso - Engenheiro de Software Full-stack">
     <meta property="og:description" content="Desenvolvimento de sistemas escaláveis e arquitetura de dados">
     <meta property="og:image" content="https://ivandro150198.github.io/cardoso_dev/assets/images/og-image.jpg">
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ivandro150198.github.io/cardoso_dev/">
     <meta property="twitter:title" content="Ivandro Cardoso - Engenheiro de Software Full-stack">
     <meta property="twitter:description" content="Desenvolvimento de sistemas escaláveis e arquitetura de dados">
     <meta property="twitter:image" content="https://ivandro150198.github.io/cardoso_dev/assets/images/og-image.jpg">
 
-    <title> Ivandro Cardoso - Engenheiro de Software </title>
-    
-    <!-- Favicon -->
+    <title>Ivandro Cardoso | Engenheiro de Software</title>
+    <link rel="canonical" href="https://ivandro150198.github.io/cardoso_dev/">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0b1520">
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- EmailJS Script -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    
-    <!-- Custom CSS -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/css/style.css">
-    
-    <!-- Structured Data for SEO -->
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -59,310 +42,221 @@
         "sameAs": [
             "https://github.com/Ivandro150198",
             "https://linkedin.com/in/ivandro-cardoso"
-        ],
-        "knowsAbout": [
-            "PHP", "JavaScript", "MySQL", "HTML", "CSS", "Bootstrap", "Git", "GitHub"
-        ],
-        "offers": {
-            "@type": "Service",
-            "serviceType": "Desenvolvimento de Software",
-            "description": "Desenvolvimento de sistemas web escaláveis, arquitetura de dados e consultoria técnica"
-        },
-        "alumniOf": {
-            "@type": "EducationalOrganization",
-            "name": "Experiência Profissional em TI"
-        },
-        "worksFor": {
-            "@type": "Organization",
-            "name": "Projetos Independentes e Empresas"
-        }
+        ]
     }
     </script>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand" href="#home"> Ivandro Cardoso</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
-                <span class="navbar-toggler-icon"></span>
+    <div id="preloader" aria-hidden="true">
+        <div class="preloader__mark">IC</div>
+    </div>
+
+    <header class="site-header" id="site-header">
+        <div class="shell site-header__inner">
+            <a href="#home" class="logo" aria-label="Ivandro Cardoso — início">
+                <span class="logo__mark">IC</span>
+                <span class="logo__text">Cardoso<span>.</span></span>
+            </a>
+            <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Abrir menu">
+                <span></span><span></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projetos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills">Habilidades</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience">Experiência</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
-                    <li class="nav-item">
-                        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-                            <i class="fas fa-moon" id="themeIcon"></i>
-                        </button>
-                    </li>
-                </ul>
-            </div>
+            <nav class="site-nav" id="siteNav" aria-label="Navegação principal">
+                <a href="#work">Projetos</a>
+                <a href="#skills">Habilidades</a>
+                <a href="#experience">Experiência</a>
+                <a href="#contact">Contato</a>
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
-        <div class="container">
-            <div class="row align-items-center min-vh-100">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <div class="hero-content">
-                        <h1 class="display-4 fw-bold mb-3">
-                            Olá, sou <span class="text-primary">Ivandro Cardoso</span>
-                        </h1>
-                        <h2 class="h3 text-muted mb-4">Engenheiro de Software Full-stack</h2>
-                        <p class="lead mb-4">
-                            Especializado em desenvolvimento de sistemas escaláveis e arquitetura de dados. 
-                            Transformo problemas complexos em soluções elegantes e performáticas.
-                        </p>
-                        <div class="hero-buttons d-flex gap-3 flex-wrap">
-                            <a href="#projects" class="btn btn-primary btn-lg">
-                                <i class="fas fa-briefcase me-2"></i>Ver Projetos
-                            </a>
-                            <a href="assets/cv/Ivandro CV.pdf" class="btn btn-outline-primary btn-lg" download>
-                                <i class="fas fa-download me-2"></i>Baixar CV
-                            </a>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero__media" aria-hidden="true">
+                <img
+                    src="assets/images/cardoso%201.jpeg"
+                    alt=""
+                    class="hero__photo"
+                    width="1600"
+                    height="2000"
+                    fetchpriority="high"
+                >
+                <div class="hero__veil"></div>
+            </div>
+            <div class="shell hero__content">
+                <p class="hero__brand reveal" data-reveal>Ivandro Cardoso</p>
+                <h1 class="hero__headline reveal" data-reveal>
+                    Sistemas robustos para operações que não podem falhar.
+                </h1>
+                <p class="hero__lead reveal" data-reveal>
+                    Engenharia full-stack com foco em arquitetura limpa, segurança e entregas consistentes.
+                </p>
+                <div class="hero__actions reveal" data-reveal>
+                    <a href="#work" class="btn btn--solid">Ver projetos</a>
+                    <a href="assets/cv/Ivandro%20CV.pdf" class="btn btn--ghost" download>Baixar CV</a>
+                </div>
+            </div>
+            <a href="#about" class="hero__scroll" aria-label="Continuar para sobre">
+                <span>Explorar</span>
+                <i class="fas fa-arrow-down"></i>
+            </a>
+        </section>
+
+        <section id="about" class="about">
+            <div class="shell about__grid">
+                <div class="about__intro reveal" data-reveal>
+                    <p class="eyebrow">Sobre</p>
+                    <h2 class="section-title">Código com intenção, entregas com impacto.</h2>
+                </div>
+                <div class="about__copy reveal" data-reveal>
+                    <p>
+                        Trabalho na interseção entre infraestrutura de TI e desenvolvimento de software —
+                        do suporte hospitalar a sistemas web de gestão. Construo soluções que escalam,
+                        permanecem seguras e são fáceis de manter.
+                    </p>
+                    <div class="about__meta">
+                        <div>
+                            <strong>8+</strong>
+                            <span>anos de experiência</span>
                         </div>
-                        <div class="social-links mt-4">
-                            <a href="https://github.com/Ivandro150198" target="_blank" rel="noopener noreferrer" class="social-icon">
-                                <i class="fab fa-github fa-lg"></i>
-                            </a>
-                            <a href="https://linkedin.com/in/ivandro-cardoso" target="_blank" rel="noopener noreferrer" class="social-icon">
-                                <i class="fab fa-linkedin fa-lg"></i>
-                            </a>
-                            <a href="mailto:ivandrotc11@gmail.com" class="social-icon">
-                                <i class="fas fa-envelope fa-lg"></i>
-                            </a>
+                        <div>
+                            <strong>12+</strong>
+                            <span>projetos entregues</span>
+                        </div>
+                        <div>
+                            <strong>Bissau</strong>
+                            <span>base de trabalho</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6" data-aos="fade-left">
-                    <div class="hero-image text-center">
-                        <img data-src="assets/images/cardoso 1.jpeg" alt="Ivandro Cardoso" class="img-fluid rounded-circle profile-img lazy" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 320'%3E%3Crect width='320' height='320' fill='%23e9ecef'/%3E%3C/svg%3E">
-                        <div class="floating-elements">
-                            <div class="floating-icon" style="top: 10%; left: 10%;">
-                                <i class="fab fa-php"></i>
-                            </div>
-                            <div class="floating-icon" style="top: 20%; right: 15%;">
-                                <i class="fab fa-js"></i>
-                            </div>
-                            <div class="floating-icon" style="bottom: 30%; left: 5%;">
-                                <i class="fab fa-react"></i>
-                            </div>
-                            <div class="floating-icon" style="bottom: 15%; right: 10%;">
-                                <i class="fab fa-node-js"></i>
-                            </div>
-                        </div>
+            </div>
+        </section>
+
+        <section id="work" class="work">
+            <div class="shell">
+                <header class="section-head reveal" data-reveal>
+                    <p class="eyebrow">Portfólio</p>
+                    <h2 class="section-title">Projetos selecionados</h2>
+                    <p class="section-lead">Sistemas com foco em automação, gestão e experiência de uso.</p>
+                </header>
+
+                <div class="work__filters reveal" data-reveal id="project-filters">
+                    <button type="button" class="filter-btn active" data-filter="all">Todos</button>
+                    <button type="button" class="filter-btn" data-filter="php">PHP</button>
+                    <button type="button" class="filter-btn" data-filter="javascript">JavaScript</button>
+                    <button type="button" class="filter-btn" data-filter="mysql">MySQL</button>
+                </div>
+
+                <div class="work__list" id="projects-container"></div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <div class="shell">
+                <header class="section-head reveal" data-reveal>
+                    <p class="eyebrow">Stack</p>
+                    <h2 class="section-title">Tecnologias com as quais entrego</h2>
+                    <p class="section-lead">Ferramentas consolidadas para backends sólidos e interfaces claras.</p>
+                </header>
+                <div class="skills__grid" id="skills-container"></div>
+            </div>
+        </section>
+
+        <section id="experience" class="experience">
+            <div class="shell">
+                <header class="section-head reveal" data-reveal>
+                    <p class="eyebrow">Trajetória</p>
+                    <h2 class="section-title">Experiência profissional</h2>
+                    <p class="section-lead">Suporte técnico, TI hospitalar e desenvolvimento de sistemas.</p>
+                </header>
+                <ol class="timeline" id="experience-container"></ol>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="shell contact__layout">
+                <div class="contact__intro reveal" data-reveal>
+                    <p class="eyebrow">Contato</p>
+                    <h2 class="section-title">Vamos construir o próximo sistema juntos.</h2>
+                    <p class="section-lead">Propostas, colaborações ou consultoria — respondo com atenção.</p>
+                    <ul class="contact__channels">
+                        <li>
+                            <a href="mailto:ivandrotc11@gmail.com">
+                                <i class="fas fa-envelope"></i>
+                                ivandrotc11@gmail.com
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/Ivandro150198" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i>
+                                GitHub
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://linkedin.com/in/ivandro-cardoso" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-linkedin"></i>
+                                LinkedIn
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <form id="contact-form" class="contact-form reveal" data-reveal novalidate>
+                    <div class="form-row">
+                        <label for="name">Nome
+                            <input type="text" id="name" name="name" placeholder="Seu nome" required autocomplete="name">
+                        </label>
+                        <label for="email">Email
+                            <input type="email" id="email" name="email" placeholder="seu@email.com" required autocomplete="email">
+                        </label>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-5" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="text-center mb-4" data-aos="fade-up">
-                <h2 class="display-6 fw-bold mb-3">Projetos</h2>
-                <p class="text-secondary">Soluções desenvolvidas para problemas reais</p>
-            </div>
-            
-            <!-- Project Filters -->
-            <div class="row mb-4" data-aos="fade-up">
-                <div class="col-12">
-                    <div class="project-filters">
-                        <button class="filter-btn active" data-filter="all">
-                            <i class="fas fa-th me-2"></i>Todos
-                        </button>
-                        <button class="filter-btn" data-filter="php">
-                            <i class="fab fa-php me-2"></i>PHP
-                        </button>
-                        <button class="filter-btn" data-filter="javascript">
-                            <i class="fab fa-js me-2"></i>JavaScript
-                        </button>
-                        <button class="filter-btn" data-filter="mysql">
-                            <i class="fas fa-database me-2"></i>MySQL
-                        </button>
-                        <button class="filter-btn" data-filter="html">
-                            <i class="fab fa-html5 me-2"></i>HTML
-                        </button>
-                        <button class="filter-btn" data-filter="css">
-                            <i class="fab fa-css3-alt me-2"></i>CSS
-                        </button>
+                    <label for="subject">Assunto
+                        <select id="subject" name="subject" required>
+                            <option value="">Selecione</option>
+                            <option value="projeto">Proposta de Novo Projeto</option>
+                            <option value="colaboracao">Oportunidade de Colaboração</option>
+                            <option value="duvida">Consulta Técnica ou Suporte</option>
+                            <option value="curriculo">Solicitação de Currículo</option>
+                            <option value="feedback">Feedback ou Sugestão</option>
+                            <option value="outro">Outro Assunto</option>
+                        </select>
+                    </label>
+                    <label for="message">Mensagem
+                        <textarea id="message" name="message" rows="5" placeholder="Conte o que precisa..." required autocomplete="off"></textarea>
+                    </label>
+                    <label class="check">
+                        <input type="checkbox" id="privacy-check" name="privacy" required>
+                        <span>Concordo com a política de privacidade</span>
+                    </label>
+                    <div class="honeypot" aria-hidden="true">
+                        <label for="website">Website
+                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                        </label>
                     </div>
-                </div>
+                    <button type="submit" class="btn btn--solid btn--block">Enviar mensagem</button>
+                    <div id="form-message" class="form-message" role="status" aria-live="polite"></div>
+                </form>
             </div>
-            
-            <div class="row g-4" id="projects-container">
-                <!-- Projects will be dynamically loaded here -->
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-5">
-        <div class="container">
-            <div class="text-center mb-4" data-aos="fade-up">
-                <h2 class="display-6 fw-bold mb-3">Habilidades</h2>
-                <p class="text-secondary">Tecnologias e competências</p>
-            </div>
-            
-            <div class="row" id="skills-container">
-                <!-- Skills will be dynamically loaded here -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-5" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="text-center mb-4" data-aos="fade-up">
-                <h2 class="display-6 fw-bold mb-3">Experiência</h2>
-                <p class="text-secondary">Trajetória profissional</p>
-            </div>
-            
-            <div class="timeline" id="experience-container">
-                <!-- Experience will be dynamically loaded here -->
-            </div>
-        </div>
-    </section>
-
-    <!-- GitHub Widget Section -->
-    <section id="github" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold">Atividade no GitHub</h2>
-                <p class="lead text-muted">Meus repositórios mais recentes e contribuições</p>
-            </div>
-            
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <div id="github-widget">
-                        <!-- GitHub widget will be loaded here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    
-    <!-- Contact Section -->
-    <section id="contact" class="py-5">
-        <div class="container">
-            <div class="text-center mb-4" data-aos="fade-up">
-                <h2 class="display-6 fw-bold mb-3">Contato</h2>
-                <p class="text-secondary">Vamos conversar sobre seu próximo projeto</p>
-            </div>
-            
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <form id="contact-form" class="contact-form" data-aos="fade-up">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="name" class="form-label">
-                                    <i class="fas fa-user me-1"></i> Nome
-                                </label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Seu nome completo" required autocomplete="name">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="email" class="form-label">
-                                    <i class="fas fa-envelope me-1"></i> Email
-                                </label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="seu@email.com" required autocomplete="email">
-                            </div>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="subject" class="form-label">
-                                <i class="fas fa-tag me-1"></i> Assunto
-                            </label>
-                            <select class="form-control form-select-lg" id="subject" name="subject" required style="font-size: 1.1rem; padding: 12px; color: var(--text-primary); background-color: var(--bg-secondary); border: 1px solid var(--border-color);">
-                                <option value="">-- Selecione uma opção --</option>
-                                <option value="projeto">Proposta de Novo Projeto</option>
-                                <option value="colaboracao">Oportunidade de Colaboração</option>
-                                <option value="duvida">Consulta Técnica ou Suporte</option>
-                                <option value="curriculo">Solicitação de Currículo</option>
-                                <option value="feedback">Feedback ou Sugestão</option>
-                                <option value="outro">Outro Assunto</option>
-                            </select>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="message" class="form-label">
-                                <i class="fas fa-comment me-1"></i> Mensagem
-                            </label>
-                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Descreva sua mensagem detalhadamente..." required autocomplete="off" style="color: var(--text-primary); background-color: var(--bg-secondary); border: 1px solid var(--border-color);"></textarea>
-                            <small class="text-muted">Mínimo 10 caracteres</small>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="privacy-check" name="privacy" required aria-describedby="privacy-help">
-                                <label class="form-check-label" for="privacy-check">
-                                    Concordo com a política de privacidade e autorizo o contato via email
-                                </label>
-                                <small id="privacy-help" class="form-text text-muted">
-                                    <i class="fas fa-info-circle me-1"></i>
-                                    Seus dados estão seguros e não serão compartilhados com terceiros.
-                                </small>
-                            </div>
-                        </div>
-                        
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-lg px-5">
-                                <i class="fas fa-paper-plane me-2"></i> Enviar Mensagem
-                            </button>
-                        </div>
-                        
-                        <div class="text-center mt-3">
-                            <small class="text-muted">
-                                <i class="fas fa-lock me-1"></i> Suas informações estão seguras e não serão compartilhadas
-                            </small>
-                        </div>
-                    </form>
-                    
-                    <div id="form-message" class="mt-3"></div>
-                </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-light py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>&copy; 2026 Ivandro Cardoso. Todos os direitos reservados.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <div class="social-links">
-                        <a href="https://github.com/Ivandro150198" target="_blank" rel="noopener noreferrer" class="text-light me-3">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://linkedin.com/in/ivandro-cardoso" target="_blank" rel="noopener noreferrer" class="text-light me-3">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="mailto:ivandro150198@gmail.com" class="text-light">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
+    <footer class="site-footer">
+        <div class="shell site-footer__inner">
+            <p id="copyright">&copy; 2026 Ivandro Cardoso. Todos os direitos reservados.</p>
+            <div class="site-footer__links">
+                <a href="https://github.com/Ivandro150198" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://linkedin.com/in/ivandro-cardoso" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:ivandrotc11@gmail.com">Email</a>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
+    <button id="backToTop" class="back-to-top" type="button" aria-label="Voltar ao topo">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>
