@@ -555,6 +555,13 @@ ol {
     padding-bottom: 0.1rem;
 }
 
+.project-row__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.55rem;
+}
+
 .project-row__link {
     display: inline-flex;
     align-items: center;
@@ -916,8 +923,11 @@ ol {
         gap: 1rem;
     }
 
-    .project-row__link {
+    .project-row__actions {
         grid-column: 2;
+        align-items: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
         margin-top: 0.35rem;
     }
 }

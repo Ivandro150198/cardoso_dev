@@ -2,27 +2,45 @@ const portfolioData = {
     projects: [
         {
             id: 1,
+            title: "Bidera",
+            description: "Sistema de Ponto de Venda (PDV/POS) para digitalizar o comércio de retalho — mercearias e lojas de conveniência — unindo a tradição do balcão à gestão de dados.",
+            technologies: ["JavaScript", "PHP", "CSS"],
+            github: "https://github.com/Ivandro150198/Bidera",
+            private: false
+        },
+        {
+            id: 2,
+            title: "Nu Chao",
+            description: "Loja online de roupas e acessórios com catálogo e experiência de compra focada no retalho digital.",
+            technologies: ["PHP", "CSS", "JavaScript"],
+            github: "https://github.com/Ivandro150198/Nu_Chao",
+            demo: "https://nu-chao.vercel.app",
+            private: false
+        },
+        {
+            id: 3,
+            title: "Hospital",
+            description: "Interface web para gestão e apresentação de serviços hospitalares, com foco em clareza e acesso rápido à informação.",
+            technologies: ["HTML", "CSS", "JavaScript"],
+            github: "https://github.com/Ivandro150198/Hospital",
+            demo: "https://hospital-plum-seven.vercel.app",
+            private: false
+        },
+        {
+            id: 4,
             title: "Gestão de Armazéns",
-            description: "Sistema web para controle de estoque e gestão de armazéns com dashboard em tempo real.",
+            description: "Sistema web para controlo de stock e gestão de armazéns de uma instituição.",
             technologies: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
             github: "https://github.com/Ivandro150198/Gestao-de-Armazens",
             private: false
         },
         {
-            id: 2,
-            title: "Ticket - Venda de Bilhetes",
-            description: "Plataforma online para venda de bilhetes de eventos com sistema de pagamento integrado.",
+            id: 5,
+            title: "Ticket",
+            description: "Site de venda de bilhetes online para eventos e shows.",
             technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
             github: "https://github.com/Ivandro150198/Ticket",
             private: false
-        },
-        {
-            id: 3,
-            title: "Laboratório",
-            description: "Sistema de gestão laboratorial com controle de amostras, resultados e integração com equipamentos.",
-            technologies: ["PHP", "MySQL", "JavaScript", "HTML", "CSS"],
-            github: "#",
-            private: true
         }
     ],
 
@@ -258,10 +276,25 @@ function loadProjects() {
         .map((project, index) => {
             const techClasses = project.technologies.map((t) => t.toLowerCase()).join(" ");
             const indexLabel = String(index + 1).padStart(2, "0");
-            const linkLabel = project.private ? "Privado" : "Código";
-            const linkIcon = project.private ? "fa-lock" : "fa-arrow-up-right-from-square";
-            const linkClass = project.private ? "project-row__link is-private" : "project-row__link";
-            const href = project.private ? "#" : project.github;
+
+            let linksHtml = "";
+            if (project.private) {
+                linksHtml = `
+                    <span class="project-row__link is-private">
+                        Privado <i class="fas fa-lock"></i>
+                    </span>`;
+            } else {
+                if (project.demo) {
+                    linksHtml += `
+                        <a href="${project.demo}" class="project-row__link" target="_blank" rel="noopener noreferrer">
+                            Demo <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>`;
+                }
+                linksHtml += `
+                    <a href="${project.github}" class="project-row__link" target="_blank" rel="noopener noreferrer">
+                        Código <i class="fab fa-github"></i>
+                    </a>`;
+            }
 
             return `
                 <article class="project-row" data-tech="${techClasses}">
@@ -273,10 +306,9 @@ function loadProjects() {
                             ${project.technologies.map((tech) => `<span>${tech}</span>`).join("")}
                         </div>
                     </div>
-                    <a href="${href}" class="${linkClass}" ${project.private ? "" : 'target="_blank" rel="noopener noreferrer"'}>
-                        ${linkLabel}
-                        <i class="fas ${linkIcon}"></i>
-                    </a>
+                    <div class="project-row__actions">
+                        ${linksHtml}
+                    </div>
                 </article>
             `;
         })
