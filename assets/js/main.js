@@ -353,6 +353,195 @@ function loadSkills() {
         .join("");
 }
 
+const techIcons = [
+    { name: "PHP", icon: "fab fa-php", color: "#777BB4", x: "18%", y: "28%", size: "5.1rem", z: 80, delay: "0s" },
+    { name: "JavaScript", icon: "fab fa-js", color: "#F0DB4F", x: "42%", y: "18%", size: "4.8rem", z: 140, delay: "0.4s" },
+    { name: "HTML5", icon: "fab fa-html5", color: "#E34F26", x: "68%", y: "24%", size: "4.6rem", z: 60, delay: "0.8s" },
+    { name: "CSS3", icon: "fab fa-css3-alt", color: "#1572B6", x: "82%", y: "48%", size: "4.4rem", z: 110, delay: "0.2s" },
+    { name: "MySQL", icon: "fas fa-database", color: "#00758F", x: "22%", y: "68%", size: "4.3rem", z: 40, delay: "1s" },
+    { name: "Bootstrap", icon: "fab fa-bootstrap", color: "#7952B3", x: "50%", y: "58%", size: "4.7rem", z: 160, delay: "0.6s" },
+    { name: "Git", icon: "fab fa-git-alt", color: "#F05032", x: "72%", y: "72%", size: "4.2rem", z: 90, delay: "1.2s" },
+    { name: "Jenkins", icon: "fab fa-jenkins", color: "#D24939", x: "38%", y: "78%", size: "4rem", z: 20, delay: "0.3s" }
+];
+
+function loadTechStage() {
+    const scene = document.getElementById("tech-scene");
+    const stage = document.getElementById("tech-stage");
+    if (!scene || !stage) return;
+
+    scene.innerHTML = techIcons
+        .map(
+            (tech, index) => `
+            <div class="tech-icon" data-depth="${tech.z}" style="--x:${tech.x};--y:${tech.y};--size:${tech.size};--tz:${tech.z}px;--icon-color:${tech.color};--float-delay:${tech.delay};--float-duration:${4.5 + (index % 3) * 0.7}s;" title="${tech.name}">
+                <div class="tech-icon__face">
+                    <i class="${tech.icon}" aria-hidden="true"></i>
+                    <span class="tech-icon__label">${tech.name}</span>
+                </div>
+            </div>
+        `
+        )
+        .join("");
+
+    stage.classList.add("is-ready");
+    initTechScroll();
+}
+
+function initTechScroll() {
+    const stage = document.getElementById("tech-stage");
+    const scene = document.getElementById("tech-scene");
+    const icons = scene ? [...scene.querySelectorAll(".tech-icon")] : [];
+    if (!stage || !scene || !icons.length) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let ticking = false;
+    const update = () => {
+        const rect = stage.getBoundingClientRect();
+        const viewH = window.innerHeight || 1;
+        const progress = 1 - (rect.top + rect.height / 2) / (viewH + rect.height / 2);
+        const tilt = (Math.max(0, Math.min(1, progress)) - 0.5) * 2;
+        scene.style.transform = `rotateX(${8 - tilt * 14}deg) rotateY(${tilt * 22}deg) translateZ(${tilt * 24}px)`;
+        icons.forEach((icon, index) => {
+            const depth = Number(icon.dataset.depth) || 40;
+            const parity = index % 2 === 0 ? 1 : -1;
+            icon.style.setProperty("--rx", `${-10 + tilt * 16 * parity}deg`);
+            icon.style.setProperty("--ry", `${14 + tilt * 28 * -parity}deg`);
+            icon.style.setProperty("--tz", `${depth + tilt * depth * 0.55}px`);
+        });
+        ticking = false;
+    };
+    const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    update();
+}
+
+function initHeroVideo() {
+    const video = document.getElementById("heroVideo");
+    const media = document.getElementById("heroMedia");
+    if (!video || !media) return;
+    const markPlaying = () => media.classList.add("is-playing");
+    const tryPlay = () => {
+        const p = video.play();
+        if (p && typeof p.then === "function") p.then(markPlaying).catch(() => media.classList.remove("is-playing"));
+    };
+    video.addEventListener("playing", markPlaying);
+    if (video.readyState >= 2) tryPlay();
+    else video.addEventListener("loadeddata", tryPlay, { once: true });
+}
+
+function initAmbientCanvas() {
+    const canvas = document.getElementById("ambient-canvas");
+    if (!canvas || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const ctx = canvas.getContext("2d");
+    let width = 0;
+    let height = 0;
+    let particles = [];
+    let raf = 0;
+
+    const resize = () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        const count = Math.min(56, Math.floor((width * height) / 28000));
+        particles = Array.from({ length: count }, () => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            r: Math.random() * 1.8 + 0.4,
+            vx: (Math.random() - 0.5) * 0.35,
+            vy: (Math.random() - 0.5) * 0.35,
+            a: Math.random() * 0.35 + 0.1
+        }));
+    };
+
+    const draw = () => {
+        ctx.clearRect(0, 0, width, height);
+        const accent = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#e04e2b";
+        particles.forEach((p, i) => {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0 || p.x > width) p.vx *= -1;
+            if (p.y < 0 || p.y > height) p.vy *= -1;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = accent;
+            ctx.globalAlpha = p.a;
+            ctx.fill();
+            for (let j = i + 1; j < particles.length; j += 1) {
+                const q = particles[j];
+                const dist = Math.hypot(p.x - q.x, p.y - q.y);
+                if (dist < 120) {
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(q.x, q.y);
+                    ctx.strokeStyle = accent;
+                    ctx.globalAlpha = (1 - dist / 120) * 0.12;
+                    ctx.stroke();
+                }
+            }
+        });
+        ctx.globalAlpha = 1;
+        raf = requestAnimationFrame(draw);
+    };
+
+    resize();
+    draw();
+    window.addEventListener("resize", resize, { passive: true });
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) cancelAnimationFrame(raf);
+        else raf = requestAnimationFrame(draw);
+    });
+}
+
+function initCounters() {
+    const nodes = document.querySelectorAll("[data-count]");
+    if (!nodes.length) return;
+    const animate = (el) => {
+        const target = Number(el.dataset.count) || 0;
+        const suffix = el.dataset.suffix || "";
+        const start = performance.now();
+        const tick = (now) => {
+            const t = Math.min(1, (now - start) / 1200);
+            el.textContent = `${Math.round(target * (1 - Math.pow(1 - t, 3)))}${suffix}`;
+            if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+    };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            animate(entry.target);
+            observer.unobserve(entry.target);
+        });
+    }, { threshold: 0.6 });
+    nodes.forEach((node) => observer.observe(node));
+}
+
+function initScrollMotion() {
+    const observe = () => {
+        const items = document.querySelectorAll(".project-row, .timeline-item");
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            items.forEach((el) => el.classList.add("is-visible"));
+            return;
+        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+            });
+        }, { threshold: 0.2, rootMargin: "0px 0px -40px 0px" });
+        items.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.06}s`;
+            observer.observe(el);
+        });
+    };
+    observe();
+    setTimeout(observe, 80);
+}
+
 function loadExperience() {
     const container = document.getElementById("experience-container");
     if (!container) return;
@@ -463,18 +652,22 @@ document.addEventListener("DOMContentLoaded", () => {
     initHeaderScroll();
     initSmoothScroll();
     initNavSpy();
+    initAmbientCanvas();
+    initHeroVideo();
     loadProjects();
     loadSkills();
+    loadTechStage();
     loadExperience();
     initContactForm();
+    initCounters();
+    initScrollMotion();
     updateCopyrightYear();
     initReveal();
-
-    // Re-observe dynamically injected reveal nodes
     requestAnimationFrame(() => initReveal());
 });
 
 window.addEventListener("load", () => {
     document.getElementById("preloader")?.classList.add("is-hidden");
     document.querySelectorAll(".hero [data-reveal]").forEach((el) => el.classList.add("is-in"));
+    initHeroVideo();
 });

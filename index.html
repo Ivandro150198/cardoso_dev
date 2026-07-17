@@ -51,6 +51,13 @@
         <div class="preloader__mark">IC</div>
     </div>
 
+    <div class="ambient" aria-hidden="true">
+        <canvas id="ambient-canvas" class="ambient__canvas"></canvas>
+        <div class="ambient__orb ambient__orb--a"></div>
+        <div class="ambient__orb ambient__orb--b"></div>
+        <div class="ambient__orb ambient__orb--c"></div>
+    </div>
+
     <header class="site-header" id="site-header">
         <div class="shell site-header__inner">
             <a href="#home" class="logo" aria-label="Ivandro Cardoso — início">
@@ -74,7 +81,19 @@
 
     <main>
         <section id="home" class="hero">
-            <div class="hero__media" aria-hidden="true">
+            <div class="hero__media" id="heroMedia" aria-hidden="true">
+                <video
+                    class="hero__video"
+                    id="heroVideo"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    poster="assets/images/hero.jpeg"
+                >
+                    <source src="assets/video/hero-bg.mp4" type="video/mp4">
+                </video>
                 <img
                     src="assets/images/hero.jpeg"
                     alt=""
@@ -84,6 +103,7 @@
                     fetchpriority="high"
                 >
                 <div class="hero__veil"></div>
+                <div class="hero__grain"></div>
             </div>
             <div class="shell hero__content">
                 <p class="hero__brand reveal" data-reveal>Ivandro Cardoso</p>
@@ -94,7 +114,7 @@
                     Engenharia full-stack com foco em arquitetura limpa, segurança e entregas consistentes.
                 </p>
                 <div class="hero__actions reveal" data-reveal>
-                    <a href="#work" class="btn btn--solid">Ver projetos</a>
+                    <a href="#work" class="btn btn--solid btn--pulse">Ver projetos</a>
                     <a href="assets/cv/Ivandro%20CV.pdf" class="btn btn--ghost" download>Baixar CV</a>
                 </div>
             </div>
@@ -117,15 +137,15 @@
                         permanecem seguras e são fáceis de manter.
                     </p>
                     <div class="about__meta">
-                        <div>
-                            <strong>8+</strong>
+                        <div class="about__stat">
+                            <strong data-count="4" data-suffix="">0</strong>
                             <span>anos de experiência</span>
                         </div>
-                        <div>
-                            <strong>12+</strong>
+                        <div class="about__stat">
+                            <strong data-count="12" data-suffix="+">0</strong>
                             <span>projetos entregues</span>
                         </div>
-                        <div>
+                        <div class="about__stat">
                             <strong>Bissau</strong>
                             <span>base de trabalho</span>
                         </div>
@@ -160,6 +180,10 @@
                     <h2 class="section-title">Tecnologias com as quais entrego</h2>
                     <p class="section-lead">Ferramentas consolidadas para backends sólidos e interfaces claras.</p>
                 </header>
+                <div class="tech-stage reveal" data-reveal id="tech-stage" aria-label="Ícones das tecnologias">
+                    <div class="tech-stage__glow" aria-hidden="true"></div>
+                    <div class="tech-stage__scene" id="tech-scene"></div>
+                </div>
                 <div class="skills__grid" id="skills-container"></div>
             </div>
         </section>
