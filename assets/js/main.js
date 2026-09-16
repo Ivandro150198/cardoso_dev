@@ -4,7 +4,7 @@ const portfolioData = {
             id: 1,
             title: "Bidera",
             description: "Sistema de Ponto de Venda (PDV/POS) para digitalizar o comércio de retalho — mercearias e lojas de conveniência — unindo a tradição do balcão à gestão de dados.",
-            technologies: ["JavaScript", "PHP", "CSS"],
+            technologies: ["PDV", "JavaScript", "PHP", "CSS"],
             github: "https://github.com/Ivandro150198/Bidera",
             private: false
         },
@@ -40,6 +40,49 @@ const portfolioData = {
             technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
             github: "https://github.com/Ivandro150198/Ticket",
             private: false
+        }
+    ],
+
+    posModules: [
+        { icon: "fa-cash-register", title: "PDV", text: "Vendas rápidas, código de barras, recibo e múltiplos meios de pagamento." },
+        { icon: "fa-wallet", title: "Caixa", text: "Abertura/fecho de sessão, movimentos e resumo do dia." },
+        { icon: "fa-boxes-stacked", title: "Produtos e stock", text: "Categorias, unidades, imagens e alertas de stock mínimo." },
+        { icon: "fa-users", title: "Clientes e crédito", text: "Cadastro, limite de crédito e pagamentos de dívida." },
+        { icon: "fa-truck", title: "Compras", text: "Entradas de mercadoria e gestão de fornecedores." },
+        { icon: "fa-rotate-left", title: "Devoluções", text: "Registo de devoluções ligadas a vendas." },
+        { icon: "fa-clipboard-check", title: "Inventário", text: "Contagens físicas e ajuste de stock." },
+        { icon: "fa-chart-line", title: "Relatórios", text: "Resumo de vendas do dia e por período." },
+        { icon: "fa-mobile-screen", title: "PWA", text: "Instalável no telemóvel ou tablet." }
+    ],
+
+    systems: [
+        {
+            title: "Bidera PDV",
+            type: "Ponto de Venda",
+            description: "PDV completo para mercearias e lojas — caixa, stock, crédito e relatórios em F CFA.",
+            github: "https://github.com/Ivandro150198/Bidera",
+            status: "Disponível"
+        },
+        {
+            title: "Nu Chao",
+            type: "Loja online",
+            description: "Catálogo e venda de roupas e acessórios com experiência de compra digital.",
+            github: "https://github.com/Ivandro150198/Nu_Chao",
+            status: "Disponível"
+        },
+        {
+            title: "Ticket",
+            type: "Venda de bilhetes",
+            description: "Plataforma de venda online de bilhetes para eventos e shows.",
+            github: "https://github.com/Ivandro150198/Ticket",
+            status: "Disponível"
+        },
+        {
+            title: "Gestão de Armazéns",
+            type: "Stock e logística",
+            description: "Controlo de stock e gestão de armazéns para instituições e retalho.",
+            github: "https://github.com/Ivandro150198/Gestao-de-Armazens",
+            status: "Disponível"
         }
     ],
 
@@ -314,6 +357,48 @@ function loadProjects() {
         .join("");
 
     initProjectFilters();
+}
+
+function loadPosModules() {
+    const container = document.getElementById("pos-modules");
+    if (!container) return;
+
+    container.innerHTML = portfolioData.posModules
+        .map(
+            (mod) => `
+            <li class="pos-module">
+                <i class="fas ${mod.icon}" aria-hidden="true"></i>
+                <div>
+                    <strong>${mod.title}</strong>
+                    <p>${mod.text}</p>
+                </div>
+            </li>
+        `
+        )
+        .join("");
+}
+
+function loadSystems() {
+    const container = document.getElementById("systems-container");
+    if (!container) return;
+
+    container.innerHTML = portfolioData.systems
+        .map(
+            (system) => `
+            <article class="system-item reveal" data-reveal>
+                <div class="system-item__meta">
+                    <span class="system-item__type">${system.type}</span>
+                    <span class="system-item__status">${system.status}</span>
+                </div>
+                <h3>${system.title}</h3>
+                <p>${system.description}</p>
+                <a href="${system.github}" class="system-item__link" target="_blank" rel="noopener noreferrer">
+                    Ver sistema <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+            </article>
+        `
+        )
+        .join("");
 }
 
 function initProjectFilters() {
@@ -655,6 +740,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initAmbientCanvas();
     initHeroVideo();
     loadProjects();
+    loadPosModules();
+    loadSystems();
     loadSkills();
     loadTechStage();
     loadExperience();

@@ -69,6 +69,7 @@
             </button>
             <nav class="site-nav" id="siteNav" aria-label="Navegação principal">
                 <a href="#work">Projetos</a>
+                <a href="#sistemas">Sistemas</a>
                 <a href="#skills">Habilidades</a>
                 <a href="#experience">Experiência</a>
                 <a href="#contact">Contato</a>
@@ -114,8 +115,8 @@
                     Engenharia full-stack com foco em arquitetura limpa, segurança e entregas consistentes.
                 </p>
                 <div class="hero__actions reveal" data-reveal>
-                    <a href="#work" class="btn btn--solid btn--pulse">Ver projetos</a>
-                    <a href="assets/cv/Ivandro%20CV.pdf" class="btn btn--ghost" download>Baixar CV</a>
+                    <a href="#sistemas" class="btn btn--solid btn--pulse">Ver sistemas PDV</a>
+                    <a href="#work" class="btn btn--ghost">Projetos</a>
                 </div>
             </div>
             <a href="#about" class="hero__scroll" aria-label="Continuar para sobre">
@@ -164,12 +165,42 @@
 
                 <div class="work__filters reveal" data-reveal id="project-filters">
                     <button type="button" class="filter-btn active" data-filter="all">Todos</button>
+                    <button type="button" class="filter-btn" data-filter="pdv">PDV</button>
                     <button type="button" class="filter-btn" data-filter="php">PHP</button>
                     <button type="button" class="filter-btn" data-filter="javascript">JavaScript</button>
                     <button type="button" class="filter-btn" data-filter="mysql">MySQL</button>
                 </div>
 
                 <div class="work__list" id="projects-container"></div>
+            </div>
+        </section>
+
+        <section id="sistemas" class="systems">
+            <div class="shell">
+                <header class="section-head reveal" data-reveal>
+                    <p class="eyebrow">Disponíveis</p>
+                    <h2 class="section-title">Ponto de venda e sistemas prontos</h2>
+                    <p class="section-lead">Soluções de retalho, stock e vendas digitais prontas a adaptar ao seu negócio.</p>
+                </header>
+
+                <article class="pos-feature reveal" data-reveal>
+                    <div class="pos-feature__intro">
+                        <p class="pos-feature__tag"><i class="fas fa-cash-register"></i> Ponto de Venda</p>
+                        <h3 class="pos-feature__title">Bidera PDV</h3>
+                        <p class="pos-feature__text">
+                            Sistema de Ponto de Venda para mercearias e lojas de conveniência.
+                            Digitaliza o balcão com stock, caixa, crédito e relatórios —
+                            pensado para o comércio guineense, com moeda F CFA (XOF).
+                        </p>
+                        <div class="pos-feature__actions">
+                            <a href="https://github.com/Ivandro150198/Bidera" class="btn btn--solid" target="_blank" rel="noopener noreferrer">Ver no GitHub</a>
+                            <a href="#contact" class="btn btn--outline">Pedir demonstração</a>
+                        </div>
+                    </div>
+                    <ul class="pos-feature__modules" id="pos-modules"></ul>
+                </article>
+
+                <div class="systems__grid" id="systems-container"></div>
             </div>
         </section>
 
