@@ -4,7 +4,6 @@ const portfolioData = {
             id: 1,
             title: "Bidera",
             description: "Sistema de Ponto de Venda (PDV/POS) para digitalizar o comércio de retalho — mercearias e lojas de conveniência — unindo a tradição do balcão à gestão de dados.",
-            area: "pdv",
             technologies: ["PDV", "JavaScript", "PHP", "CSS"],
             github: "https://github.com/Ivandro150198/Bidera",
             private: false
@@ -13,7 +12,6 @@ const portfolioData = {
             id: 2,
             title: "Nu Chao",
             description: "Loja online de roupas e acessórios com catálogo e experiência de compra focada no retalho digital.",
-            area: "loja",
             technologies: ["PHP", "CSS", "JavaScript"],
             github: "https://github.com/Ivandro150198/Nu_Chao",
             private: false
@@ -22,7 +20,6 @@ const portfolioData = {
             id: 3,
             title: "Hospital",
             description: "Interface web para gestão e apresentação de serviços hospitalares, com foco em clareza e acesso rápido à informação.",
-            area: "saude",
             technologies: ["HTML", "CSS", "JavaScript"],
             github: "https://github.com/Ivandro150198/Hospital",
             demo: "https://hospital-plum-seven.vercel.app",
@@ -32,7 +29,6 @@ const portfolioData = {
             id: 4,
             title: "Gestão de Armazéns",
             description: "Sistema web para controlo de stock e gestão de armazéns de uma instituição.",
-            area: "stock",
             technologies: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
             github: "https://github.com/Ivandro150198/Gestao-de-Armazens",
             private: false
@@ -41,7 +37,6 @@ const portfolioData = {
             id: 5,
             title: "Ticket",
             description: "Site de venda de bilhetes online para eventos e shows.",
-            area: "bilhetes",
             technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
             github: "https://github.com/Ivandro150198/Ticket",
             private: false
@@ -95,7 +90,9 @@ const portfolioData = {
         Backend: [
             { name: "PHP" },
             { name: "JavaScript" },
-            { name: "MySQL" }
+            { name: "MySQL" },
+            { name: "HTML5" },
+            { name: "CSS3" }
         ],
         Frontend: [
             { name: "HTML5" },
@@ -111,7 +108,9 @@ const portfolioData = {
         ],
         "DevOps & Ferramentas": [
             { name: "Git" },
-            { name: "GitHub" }
+            { name: "Jenkins" },
+            { name: "CI/CD" },
+            { name: "Version Control" }
         ]
     },
 
@@ -177,43 +176,13 @@ function showMessage(message, type = "info") {
     const container = document.getElementById("form-message");
     if (!container) return;
 
-    container.replaceChildren();
-    const alert = document.createElement("div");
-    alert.className = `alert alert-${type}`;
-    alert.textContent = message;
-    container.append(alert);
+    container.innerHTML = `<div class="alert alert-${type}">${message}</div>`;
 
     if (type === "success") {
         setTimeout(() => {
-            container.replaceChildren();
+            container.innerHTML = "";
         }, 5000);
     }
-}
-
-function buildMailto(name, email, subject, message) {
-    const subjectLine = `[Contato do Site] ${getSubjectText(subject)}`;
-    const body = `Nome: ${name}\nEmail: ${email}\n\n${message}`;
-    return `mailto:ivandrotc11@gmail.com?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(body)}`;
-}
-
-function showContactFallback(name, email, subject, message) {
-    const container = document.getElementById("form-message");
-    if (!container) return;
-
-    container.replaceChildren();
-    const alert = document.createElement("div");
-    alert.className = "alert alert-danger";
-
-    const text = document.createElement("p");
-    text.textContent = "O servidor não enviou o email. A mensagem continua no formulário. Abra o seu programa de email para a entregar.";
-
-    const link = document.createElement("a");
-    link.className = "form-fallback";
-    link.href = buildMailto(name, email, subject, message);
-    link.textContent = "Abrir email com esta mensagem";
-
-    alert.append(text, link);
-    container.append(alert);
 }
 
 function initTheme() {
@@ -347,9 +316,7 @@ function loadProjects() {
 
     container.innerHTML = portfolioData.projects
         .map((project, index) => {
-            const techClasses = [...project.technologies.map((t) => t.toLowerCase()), project.area || ""]
-                .join(" ")
-                .trim();
+            const techClasses = project.technologies.map((t) => t.toLowerCase()).join(" ");
             const indexLabel = String(index + 1).padStart(2, "0");
 
             let linksHtml = "";
@@ -425,14 +392,9 @@ function loadSystems() {
                 </div>
                 <h3>${system.title}</h3>
                 <p>${system.description}</p>
-                <div class="system-item__actions">
-                    <a href="#contact" class="system-item__link" data-demo="${system.title}">
-                        Pedir demonstração <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="${system.github}" class="system-item__link" target="_blank" rel="noopener noreferrer">
-                        Código <i class="fab fa-github"></i>
-                    </a>
-                </div>
+                <a href="${system.github}" class="system-item__link" target="_blank" rel="noopener noreferrer">
+                    Ver sistema <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
             </article>
         `
         )
@@ -484,7 +446,7 @@ const techIcons = [
     { name: "MySQL", icon: "fas fa-database", color: "#00758F", x: "22%", y: "68%", size: "4.3rem", z: 40, delay: "1s" },
     { name: "Bootstrap", icon: "fab fa-bootstrap", color: "#7952B3", x: "50%", y: "58%", size: "4.7rem", z: 160, delay: "0.6s" },
     { name: "Git", icon: "fab fa-git-alt", color: "#F05032", x: "72%", y: "72%", size: "4.2rem", z: 90, delay: "1.2s" },
-    { name: "GitHub", icon: "fab fa-github", color: "#f4f7fb", x: "38%", y: "78%", size: "4rem", z: 20, delay: "0.3s" }
+    { name: "Jenkins", icon: "fab fa-jenkins", color: "#D24939", x: "38%", y: "78%", size: "4rem", z: 20, delay: "0.3s" }
 ];
 
 function loadTechStage() {
@@ -690,20 +652,6 @@ function updateCopyrightYear() {
     }
 }
 
-function initDemoRequests() {
-    document.addEventListener("click", (event) => {
-        const link = event.target.closest("[data-demo]");
-        if (!link) return;
-
-        const subject = document.getElementById("subject");
-        const message = document.getElementById("message");
-        if (subject) subject.value = "projeto";
-        if (message && message.value.trim().length < 10) {
-            message.value = `Quero uma demonstração de ${link.dataset.demo}.`;
-        }
-    });
-}
-
 function initContactForm() {
     const form = document.getElementById("contact-form");
     if (!form) return;
@@ -765,13 +713,17 @@ function initContactForm() {
             if (response.ok && data?.success) {
                 showMessage(data.message || "Mensagem enviada com sucesso!", "success");
                 form.reset();
-            } else if (response.status === 400 || response.status === 422) {
-                showMessage(data?.message || "Dados do formulário inválidos.", "danger");
             } else {
-                showContactFallback(name, email, subject, message);
+                showMessage(
+                    data?.message || "Ocorreu um erro ao enviar a mensagem. Tente novamente.",
+                    "danger"
+                );
             }
         } catch (err) {
-            showContactFallback(name, email, subject, message);
+            showMessage(
+                "Não foi possível enviar agora. Tente pelo email ivandrotc11@gmail.com.",
+                "danger"
+            );
         } finally {
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
@@ -794,14 +746,11 @@ document.addEventListener("DOMContentLoaded", () => {
     loadTechStage();
     loadExperience();
     initContactForm();
-    initDemoRequests();
     initCounters();
     initScrollMotion();
     updateCopyrightYear();
     initReveal();
     requestAnimationFrame(() => initReveal());
-    document.getElementById("preloader")?.classList.add("is-hidden");
-    document.querySelectorAll(".hero [data-reveal]").forEach((el) => el.classList.add("is-in"));
 });
 
 window.addEventListener("load", () => {
